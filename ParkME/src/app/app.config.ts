@@ -29,7 +29,8 @@ export const appConfig: ApplicationConfig = {
           console.error(error);
         }
       } as SocialAuthServiceConfig
-    }, provideAnimationsAsync()
+    }, provideAnimationsAsync()]}
+
 
 
 
