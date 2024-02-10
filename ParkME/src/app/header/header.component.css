@@ -16,5 +16,12 @@
   border-radius: 4px;
 }
 .Inputs{
+ display: flex;
   float: right;
+  flex: 1;
+
 }
+.routerLinkActive{
+  background: white;
+}
+

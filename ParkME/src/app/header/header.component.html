@@ -1,10 +1,10 @@
 <div class="header">
   <button mat-button class="logo">Add a background Image</button>
   <div class="Inputs">
-    <button mat-button routerLinkActive="routerLinkActive" routerLink="Home">Home</button>
-    <div *ngIf="LoggedIn">
-    <button mat-button routerLinkActive="routerLinkActive" (click)="signOut()" )>Sign Out</button>
-      <ng-template><button mat-button routerLinkActive="routerLinkActive" (click)="signOut()" )>Login</button></ng-template>
+   <div>
+     <button mat-button routerLink='src/app/home' routerLinkActive="routerLinkActive">Home</button>
+   </div>
+    <asl-google-signin-button type='standard' size='medium' >
+    </asl-google-signin-button>
     </div>
   </div>
-</div>
