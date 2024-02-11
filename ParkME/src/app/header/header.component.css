@@ -1,7 +1,9 @@
 .header {
   overflow: hidden;
-  background-color: #f1f1f1;
-  padding: 20px 10px;
+  background-color: #0039a6;
+  height: 60px!important;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 /* Style the header links */
@@ -19,9 +21,20 @@
  display: flex;
   float: right;
   flex: 1;
+  align-items: center!important;
 
 }
 .routerLinkActive{
   background: white;
 }
+.RouterButton{
+  height: 60px;
+  min-height: unset!important;
+  /*margin-left: 60px!important;*/
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.googleSign{
+  margin-left: 10px;
 
+}

@@ -24,7 +24,7 @@ export class HeaderComponent {
   ngOnInit(): void {
     this.authService.authState.subscribe((user) => {
      this.handleLogin(user)
-      console.error(user)
+      console.log(user)
       //perform further logics
     });
   }
@@ -34,7 +34,11 @@ export class HeaderComponent {
   handleLogin(user:SocialUser){
 if(user){
   const payload=this.decodeToken(user.idToken)
+  console.log(payload)
   sessionStorage.setItem("loggedInUser", JSON.stringify(payload))
+  this.LoggedIn=true;
+
+
 
 }
   }

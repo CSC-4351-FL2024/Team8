@@ -1,10 +1,14 @@
 <div class="header">
   <button mat-button class="logo">Add a background Image</button>
   <div class="Inputs">
-   <div>
-     <button mat-button routerLink='src/app/home' routerLinkActive="routerLinkActive">Home</button>
-   </div>
-    <asl-google-signin-button type='standard' size='medium' >
+
+     <button class="RouterButton" mat-button routerLink='src/app/home' routerLinkActive="routerLinkActive">Home</button>
+<div *ngIf="!LoggedIn" class="Inputs" >
+    <asl-google-signin-button type="standard" size='large' class="googleSign" >
     </asl-google-signin-button>
     </div>
+<div *ngIf="LoggedIn">
+  <button class="RouterButton" mat-button routerLink='src/app/home' routerLinkActive="routerLinkActive">Setting</button>
+</div>
+  </div>
   </div>
