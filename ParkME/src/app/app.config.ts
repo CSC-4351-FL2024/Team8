@@ -6,9 +6,11 @@ import { SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
 import {
   GoogleLoginProvider,
 } from '@abacritt/angularx-social-login';
+import {provideAnimations} from "@angular/platform-browser/animations";
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes), provideClientHydration(),
+  providers: [provideRouter(routes),provideAnimations() ,provideClientHydration(),
     {
 
 
@@ -27,6 +29,6 @@ export const appConfig: ApplicationConfig = {
           console.error(error);
         }
       } as SocialAuthServiceConfig
-    }
+    }, provideAnimationsAsync()
     ]
 }

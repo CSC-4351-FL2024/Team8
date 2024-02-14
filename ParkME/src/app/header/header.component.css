@@ -30,11 +30,18 @@
 .RouterButton{
   height: 60px;
   min-height: unset!important;
-  /*margin-left: 60px!important;*/
   margin-left: 10px;
   margin-right: 10px;
 }
 .googleSign{
   margin-left: 10px;
 
+}
+img {
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+}
+::ng-deep.mat-menu-panel.menuButton {
+  margin-top: 100px;
 }
