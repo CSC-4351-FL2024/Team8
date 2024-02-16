@@ -1,70 +1,4 @@
-.head1 {
-  font-size: 50px;
-  color: white;
-  font-weight: bold;
-  background-color: #4285F4;
-  padding: 5px 0px 0px 0px;
-}
 
-.head2 {
-  font-size: 20px;
-  margin-bottom: 10px;
-  background-color: #4285F4;
-  padding: 0px 0px 10px 0px;
-}
-
-body {
-  margin: 0 auto;
-  background-position: center;
-  background-size: contain;
-}
-
-.menu {
-  position: sticky;
-  top: 0;
-  background-color: #4285F4;
-  padding: 0px 0px 10px 0px;
-  color: white;
-  margin: 0 auto;
-  overflow: hidden;
-}
-
-.menu a {
-  float: left;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 20px;
-}
-
-.menu-log {
-  right: auto;
-  float: right;
-}
-
-footer {
-  width: 100%;
-  bottom: 0px;
-  background-color: #000;
-  color: #fff;
-  position: sticky;
-  padding-top: 20px;
-  padding-bottom: 24px;
-  text-align: center;
-  font-size: 30px;
-  font-weight: bold;
-}
-
-.body_sec {
-  margin-left: 20px;
-}
-
-aside {
-  width: 40%;
-  float: left;
-  display: inline;
-}
 
 /* Always set the map height explicitly to define the size of the div
 * element that contains the map. */
@@ -74,27 +8,4 @@ gmp-map {
 #map{
   height: 400px;
   width: 100%;
-}
-
-/* HTML marker styles */
-.decks {
-background-color: #4285F4;
-border-radius: 8px;
-color: #FFFFFF;
-font-size: 14px;
-padding: 10px 15px;
-position: relative;
-}
-
-.decks::after {
-content: "";
-position: absolute;
-left: 50%;
-top: 100%;
-transform: translate(-50%, 0);
-width: 0;
-height: 0;
-border-left: 8px solid transparent;
-border-right: 8px solid transparent;
-border-top: 8px solid #4285F4;
 }

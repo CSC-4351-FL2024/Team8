@@ -8,8 +8,10 @@ import {
 } from '@abacritt/angularx-social-login';
 import {provideAnimations} from "@angular/platform-browser/animations";
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import {GoogleMapsModule} from "@angular/google-maps";
 
 export const appConfig: ApplicationConfig = {
+
   providers: [provideRouter(routes),provideAnimations() ,provideClientHydration(),
     {
 
@@ -21,10 +23,11 @@ export const appConfig: ApplicationConfig = {
           {
             id: GoogleLoginProvider.PROVIDER_ID,
             provider: new GoogleLoginProvider(
-              '754588958744-8l1p80q3rr35vj0ccbk7vsvk6ep9iag9.apps.googleusercontent.com'
-            )
+            '15399289946-7qg6n491t7iho4smmgg5jv6rj23fen7r.apps.googleusercontent.com'
+              )
           }
         ],
+        imports:[GoogleMapsModule],
         onError: (error) => {
           console.error(error);
         }

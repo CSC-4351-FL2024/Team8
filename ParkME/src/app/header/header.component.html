@@ -10,8 +10,9 @@
   <button mat-button [matMenuTriggerFor]="menu"><img [src]="userProfilePicture"  alt="Avatar"></button>
   <mat-menu #menu="matMenu" class="menuButton" [overlapTrigger]="false"  >
 
-    <button  mat-menu-item>Setting</button>
-    <button mat-menu-item>Sign out</button>
+    <button  mat-menu-item routerLink=>Setting</button>
+    <button mat-menu-item (click)="signOut()">Sign out</button>
+
   </mat-menu>
 
 </div>
