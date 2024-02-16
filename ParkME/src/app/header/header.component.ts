@@ -5,6 +5,7 @@ import {CommonModule, NgOptimizedImage} from '@angular/common'
 import {SocialAuthService, GoogleSigninButtonModule, SocialUser} from '@abacritt/angularx-social-login';
 import {MatMenu, MatMenuItem, MatMenuTrigger} from "@angular/material/menu";
 declare var google:any;
+declare const gapi:any;
 
 @Component({
 
