@@ -1,0 +1,45 @@
+body{
+    background-image: url("../../assets/image1.jpeg") ;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.container{
+    background-color: rgba(255, 255, 255, 1);
+   /* border: 3px solid rgb(144, 138, 138);*/
+    width: 260px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 15px;
+    box-shadow: 13px 13px 0px black;
+}
+
+.account{
+    font-weight: normal;
+}
+
+.verticalCenter{
+    text-align: center;
+    padding: 30px;
+}
+
+#formInput{
+    border: none;
+    background-color: #8f9193 ;
+    border-radius: 6px;
+    height: 20px;
+    width: 150px;
+
+}
+
+#submit{
+    height: 25px;
+    border: none;
+    background-color: rgb(50, 109, 235);
+    border-radius: 6px;
+}
+#submit:hover{
+    cursor: pointer;
+}
