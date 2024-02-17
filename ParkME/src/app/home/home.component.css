@@ -1,11 +1,9 @@
-
-
-/* Always set the map height explicitly to define the size of the div
-* element that contains the map. */
-gmp-map {
-  height: 100%;
-}
 #map{
-  height: 100%;
-  width: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border:5px solid rgb(147, 141, 141);
+  height: 720px;
+  width: 1600px;
 }

@@ -13,13 +13,9 @@ declare var google:any;
 })
 export class HomeComponent {
 
-
   constructor() {
   }
-
-
 }
-
 
   async function initMap() {
     // Request needed libraries.
