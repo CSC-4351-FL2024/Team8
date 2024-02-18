@@ -1,6 +1,4 @@
-import {Component, OnInit} from '@angular/core';
-import {GoogleMap} from "@angular/google-maps";
-import {async} from "rxjs";
+import {Component, Injectable, OnInit} from '@angular/core';
 declare var google:any;
 @Component({
   selector: 'app-home',
@@ -8,12 +6,17 @@ declare var google:any;
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
   imports: [
-    GoogleMap
   ]
+})
+@Injectable({
+  providedIn: 'root'
 })
 export class HomeComponent {
 
   constructor() {
+  }
+  initMap(){
+    initMap()
   }
 }
 
@@ -90,6 +93,5 @@ export class HomeComponent {
       });
     });
   }
-  initMap();
 
 

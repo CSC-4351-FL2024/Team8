@@ -46,3 +46,14 @@ label{
 #submit:hover{
     cursor: pointer;
 }
+input:disabled {
+  color: black;
+}
+
+select:disabled {
+  color: black;
+}
+
+.mat-select-disabled .mat-select-value {
+     color: black;
+   }

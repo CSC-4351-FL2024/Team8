@@ -8,7 +8,6 @@ import {
 } from '@abacritt/angularx-social-login';
 import {provideAnimations} from "@angular/platform-browser/animations";
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import {GoogleMapsModule} from "@angular/google-maps";
 
 export const appConfig: ApplicationConfig = {
 
@@ -27,7 +26,7 @@ export const appConfig: ApplicationConfig = {
               )
           }
         ],
-        imports:[GoogleMapsModule],
+        imports:[],
         onError: (error) => {
           console.error(error);
         }

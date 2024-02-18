@@ -1,11 +1,10 @@
-import { Component } from '@angular/core';
+import {Component, Injectable} from '@angular/core';
 import {RouterLink, RouterLinkActive} from "@angular/router";
 import {MatButtonModule} from '@angular/material/button'
 import {CommonModule, NgOptimizedImage} from '@angular/common'
 import {SocialAuthService, GoogleSigninButtonModule, SocialUser} from '@abacritt/angularx-social-login';
 import {MatMenu, MatMenuItem, MatMenuTrigger} from "@angular/material/menu";
 declare var google:any;
-declare const gapi:any;
 
 @Component({
 
@@ -33,12 +32,13 @@ declare const gapi:any;
   styleUrl: './header.component.css'
 
 })
-
+@Injectable({providedIn:"root"})
 export class HeaderComponent {
 
   LoggedIn = false
   userProfilePicture: undefined;
   email: undefined;
+  username:undefined;
 
   constructor(private authService: SocialAuthService) {
   }
@@ -67,17 +67,11 @@ export class HeaderComponent {
   setVariable() {
     this.userProfilePicture = JSON.parse(sessionStorage.getItem('loggedInUser')!).picture;
     this.LoggedIn = true
-    this.email = JSON.parse(sessionStorage.getItem('loggedInUser')!).picture;
+    this.email = JSON.parse(sessionStorage.getItem('loggedInUser')!).email;
+    this.username=JSON.parse(sessionStorage.getItem('loggedInUser')!).username;
   }
 
     signOut() {
-    var auth2 = gapi.auth2.getAuthInstance();
-    let loggedin=this.LoggedIn;
-    auth2.signOut().then(function () {
-      sessionStorage.clear();
-      loggedin=false;
-      console.log("sign out")
-    });
-  this.LoggedIn=loggedin;
+
   }
 }
