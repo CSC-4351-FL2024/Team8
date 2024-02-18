@@ -5,6 +5,7 @@ import {CommonModule, NgOptimizedImage} from '@angular/common'
 import {SocialAuthService, GoogleSigninButtonModule, SocialUser} from '@abacritt/angularx-social-login';
 import {MatMenu, MatMenuItem, MatMenuTrigger} from "@angular/material/menu";
 declare var google:any;
+import { Buffer } from 'buffer';
 
 @Component({
 
@@ -51,7 +52,9 @@ export class HeaderComponent {
   }
 
   private decodeToken(token: string) {
-    return JSON.parse(atob(token.split(".")[1]));
+    // return JSON.parse(atob(token.split(".")[1]));
+
+      return JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString());
   }
 
   handleLogin(user: SocialUser) {
@@ -72,6 +75,8 @@ export class HeaderComponent {
   }
 
     signOut() {
-
+    google.accounts.id.disableAutoSelect();
+    this.LoggedIn = false
+    sessionStorage.clear()
   }
 }
