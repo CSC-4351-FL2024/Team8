@@ -1,8 +1,8 @@
 <div class="header">
-  <button mat-button class="logo" routerLink='/src/app/home'> Filler</button>
+  <button mat-button class="logo Inputs" routerLink='/src/app/home'>replace</button>
   <div class="Inputs">
-<div *ngIf="!LoggedIn" class="Inputs" >
-    <asl-google-signin-button  type="standard" size='large' class="googleSign " >
+<div *ngIf="!LoggedIn" class="googleSign Inputs" >
+    <asl-google-signin-button  type="standard" size='large' >
     </asl-google-signin-button>
     </div>
 <div *ngIf="LoggedIn">

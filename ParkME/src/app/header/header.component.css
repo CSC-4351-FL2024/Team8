@@ -21,21 +21,16 @@
  display: flex;
   float: right;
   flex: 1;
-  align-items: center!important;
-
+  height: 60px;
+  min-height: unset!important;
 }
 .routerLinkActive{
   background: white;
 }
-.RouterButton{
-  height: 60px;
-  min-height: unset!important;
-  margin-left: 10px;
-  margin-right: 10px;
-}
+
 .googleSign{
   margin-left: 10px;
-
+  margin-top: 10px;
 }
 img {
   border-radius: 50%;
@@ -44,4 +39,7 @@ img {
 }
 ::ng-deep.mat-menu-panel.menuButton {
   margin-top: 100px;
+}
+.logo{
+  float: left!important;
 }
