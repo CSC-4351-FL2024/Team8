@@ -17,6 +17,5 @@ export const routes: Routes = [
   {
     path:'src/app/settings',
     component: SettingsComponent,
-    pathMatch:"full"
   }
 ];

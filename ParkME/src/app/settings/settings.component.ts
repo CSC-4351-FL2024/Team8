@@ -15,8 +15,8 @@ import {FormControl, ReactiveFormsModule} from "@angular/forms";
 })
 export class SettingsComponent implements OnInit {
   disableForm: any;
-  email: undefined;
-  username:undefined;
+  email: any;
+  username:any;
 
   constructor() {
 

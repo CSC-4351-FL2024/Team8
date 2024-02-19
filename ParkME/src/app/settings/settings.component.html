@@ -5,11 +5,11 @@
                 <div class="form">
                           <mat-form-field >
                             <mat-label >Name</mat-label>
-                            <input matInput value="{{username}}" [formControl]="disableForm">
+                            <input matInput [value]="username" [formControl]="disableForm">
                           </mat-form-field>
                   <mat-form-field  >
                             <mat-label>Email</mat-label>
-                            <input matInput value="{{email}}" [formControl]="disableForm">
+                            <input matInput [value]="email" [formControl]="disableForm">
                   </mat-form-field >
                   <mat-form-field>
                             <mat-label>License Plate Number</mat-label>
