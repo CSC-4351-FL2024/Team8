@@ -1,4 +1,4 @@
-import {Component, Injectable} from '@angular/core';
+import {Component, Injectable, OnInit} from '@angular/core';
 import {RouterLink, RouterLinkActive} from "@angular/router";
 import {MatButtonModule} from '@angular/material/button'
 import {CommonModule, NgOptimizedImage} from '@angular/common'
@@ -34,7 +34,7 @@ import { Buffer } from 'buffer';
 
 })
 @Injectable({providedIn:"root"})
-export class HeaderComponent {
+export class HeaderComponent implements OnInit{
 
   LoggedIn = false
   userProfilePicture: undefined;
@@ -47,7 +47,7 @@ export class HeaderComponent {
   ngOnInit(): void {
     this.authService.authState.subscribe((user) => {
       this.handleLogin(user)
-      // console.log(user)
+      console.log(user)
     });
   }
 
@@ -59,8 +59,9 @@ export class HeaderComponent {
 
   handleLogin(user: SocialUser) {
     if (user) {
+
       const payload = this.decodeToken(user.idToken)
-      // console.log(payload)
+      console.log(payload)
       sessionStorage.setItem("loggedInUser", JSON.stringify(payload));
       this.setVariable();
 
@@ -76,7 +77,7 @@ export class HeaderComponent {
 
     signOut() {
     google.accounts.id.disableAutoSelect();
-    this.LoggedIn = false
-    sessionStorage.clear()
+    this.LoggedIn = false;
+    sessionStorage.clear();
   }
 }

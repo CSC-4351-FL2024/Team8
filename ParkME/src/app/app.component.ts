@@ -24,10 +24,12 @@ import {Router} from "@angular/router";
 export class AppComponent {
   title = 'ParkME';
   constructor(private router: Router, homeCompponent:HomeComponent) {
+    console.log(router.url)
     this.router.events
       .pipe(filter((event: any) => event instanceof NavigationEnd))
       .subscribe((event: any) => {
         if (event.url=="/src/app/home") {
+          console.log(router.url)
         homeCompponent.initMap()
       }
       });

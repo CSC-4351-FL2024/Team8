@@ -11,11 +11,15 @@ declare var google:any;
 @Injectable({
   providedIn: 'root'
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit{
 
   constructor() {
   }
   initMap(){
+    initMap()
+  }
+
+  ngOnInit(): void {
     initMap()
   }
 }
