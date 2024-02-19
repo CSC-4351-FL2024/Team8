@@ -39,8 +39,8 @@ export class HeaderComponent implements OnInit{
 
   LoggedIn = false
   userProfilePicture: undefined;
-  email: undefined;
-  username:undefined;
+  email: any;
+  username:any;
 
 
   constructor(private authService: SocialAuthService ,public settingComponent:SettingsComponent ) {
@@ -76,13 +76,14 @@ export class HeaderComponent implements OnInit{
     this.LoggedIn = true
     this.email = JSON.parse(sessionStorage.getItem('loggedInUser')!).email;
     this.username=JSON.parse(sessionStorage.getItem('loggedInUser')!).username;
+    this.settingComponent.setVariable(this.email, this.username );
   }
 
     signOut() {
     google.accounts.id.disableAutoSelect();
     this.LoggedIn = false;
     sessionStorage.clear();
-    this.settingComponent.setVariable();
+
 
   }
 

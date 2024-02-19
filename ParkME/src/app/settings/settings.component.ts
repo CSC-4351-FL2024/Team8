@@ -1,25 +1,24 @@
-import {Component, OnInit} from '@angular/core';
-import { HeaderComponent} from "../header/header.component";
+import {Component, Injectable, OnInit} from '@angular/core';
 import {MatFormField, MatLabel} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
 import {MatButton} from "@angular/material/button";
 import {FormControl, ReactiveFormsModule} from "@angular/forms";
-
+@Injectable({
+  providedIn: 'root'
+})
 @Component({
   selector: 'app-settings',
   standalone: true,
-  imports: [HeaderComponent, MatLabel, MatFormField, MatInput, MatButton, ReactiveFormsModule],
+  imports: [ MatLabel, MatFormField, MatInput, MatButton, ReactiveFormsModule],
   templateUrl: './settings.component.html',
   styleUrl: './settings.component.css'
 })
 export class SettingsComponent implements OnInit {
-  headerComponent: any;
   disableForm: any;
   email: undefined;
   username:undefined;
 
-  constructor(headerComponent: HeaderComponent) {
-    this.headerComponent = headerComponent;
+  constructor() {
 
 
   }
@@ -33,9 +32,12 @@ export class SettingsComponent implements OnInit {
 
   }
 
-  setVariable() {
-    this.email=this.headerComponent.email;
-    this.username=this.headerComponent.username
+  setVariable(email:any, username:any) {
+    this.email=email;
+    this.username=username
+    console.log(this.email)
+    console.log(this.username)
+    this.ngOnInit();
 
   }
 }

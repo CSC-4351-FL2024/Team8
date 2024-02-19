@@ -8,7 +8,7 @@
 <div *ngIf="LoggedIn">
 
   <button mat-button [matMenuTriggerFor]="menu"><img [src]="userProfilePicture"  alt="Avatar"></button>
-  <mat-menu #menu="matMenu" class="menuButton" [overlapTrigger]="false"  >
+  <mat-menu #menu="matMenu" class="menuButton" [overlapTrigger]="false" >
 
     <button  mat-menu-item routerLink='/src/app/settings'>Setting</button>
     <button mat-menu-item (click)="signOut()">Sign out</button>
