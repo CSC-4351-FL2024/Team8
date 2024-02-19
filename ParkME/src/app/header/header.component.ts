@@ -6,6 +6,7 @@ import {SocialAuthService, GoogleSigninButtonModule, SocialUser} from '@abacritt
 import {MatMenu, MatMenuItem, MatMenuTrigger} from "@angular/material/menu";
 declare var google:any;
 import { Buffer } from 'buffer';
+import {SettingsComponent} from "../settings/settings.component";
 
 @Component({
 
@@ -41,13 +42,15 @@ export class HeaderComponent implements OnInit{
   email: undefined;
   username:undefined;
 
-  constructor(private authService: SocialAuthService) {
+
+  constructor(private authService: SocialAuthService ,public settingComponent:SettingsComponent ) {
   }
 
   ngOnInit(): void {
     this.authService.authState.subscribe((user) => {
       this.handleLogin(user)
       console.log(user)
+
     });
   }
 
@@ -79,5 +82,8 @@ export class HeaderComponent implements OnInit{
     google.accounts.id.disableAutoSelect();
     this.LoggedIn = false;
     sessionStorage.clear();
+    this.settingComponent.setVariable();
+
   }
+
 }

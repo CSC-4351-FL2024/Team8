@@ -12,21 +12,30 @@ import {FormControl, ReactiveFormsModule} from "@angular/forms";
   templateUrl: './settings.component.html',
   styleUrl: './settings.component.css'
 })
-export class SettingsComponent implements OnInit{
-  headerComponent:any;
-  disableForm:any;
+export class SettingsComponent implements OnInit {
+  headerComponent: any;
+  disableForm: any;
+  email: undefined;
+  username:undefined;
 
-  constructor(headerComponent:HeaderComponent) {
-    this.headerComponent=headerComponent;
+  constructor(headerComponent: HeaderComponent) {
+    this.headerComponent = headerComponent;
 
 
   }
 
   ngOnInit(): void {
-   this.disableForm=new FormControl({value: '', disabled: true})
+    this.disableForm = new FormControl({value: '', disabled: true})
   }
 
-   handleSubmit() {
-  console.log("Form submitted!");
+  handleSubmit() {
+    console.log("Form submitted!");
 
-}}
+  }
+
+  setVariable() {
+    this.email=this.headerComponent.email;
+    this.username=this.headerComponent.username
+
+  }
+}
