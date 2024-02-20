@@ -9,11 +9,22 @@ body{
    /* border: 3px solid rgb(144, 138, 138);*/
     width: 260px;
     position: absolute;
-    top: 50%;
+    bottom: 0;
     left: 50%;
-    transform: translate(-50%, -50%);
+    animation: moving 1.5s ease-in-out forwards;
+    transform: translate(-50%, 50%);
     border-radius: 15px;
     box-shadow: 13px 13px 0px black;
+}
+
+@keyframes moving{
+    from {
+        bottom: 0; 
+    }
+    to {
+        bottom: 20%; 
+        transform: translateX(-50%); 
+    }
 }
 
 .account{
