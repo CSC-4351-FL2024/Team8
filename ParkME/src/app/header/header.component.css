@@ -17,6 +17,7 @@
   line-height: 25px;
   border-radius: 4px;
 }
+
 .Inputs{
  display: flex;
   float: right;
@@ -24,6 +25,7 @@
   height: 60px;
   min-height: unset!important;
 }
+
 .routerLinkActive{
   background: white;
 }
@@ -32,15 +34,18 @@
   margin-left: 10px;
   margin-top: 10px;
 }
+
 img {
   border-radius: 50%;
   height: 40px;
   width: 40px;
   margin-top: 25px;
 }
+
 ::ng-deep.mat-menu-panel.menuButton {
   margin-top: 100px;
 }
+
 .logo{
   float: left!important;
   font-size: 30px;
