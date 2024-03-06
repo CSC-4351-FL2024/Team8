@@ -1,101 +1,65 @@
-import {Component, Injectable, OnInit} from '@angular/core';
-declare var google:any;
+import { Component, Injectable, OnInit } from '@angular/core';
+
+declare var google: any;
+
 @Component({
   selector: 'app-home',
   standalone: true,
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
-  imports: [
-  ]
+  imports: []
 })
 @Injectable({
   providedIn: 'root'
 })
-export class HomeComponent implements OnInit{
-
-  constructor() {
-  }
-  initMap(){
-    initMap()
-  }
+export class HomeComponent implements OnInit {
+  constructor() { }
 
   ngOnInit(): void {
-    initMap()
+    this.initMap();
   }
-}
 
-  async function initMap() {
-    // Request needed libraries.
-    const {Map} = await google.maps.importLibrary("maps");
-    const {AdvancedMarkerElement} = await google.maps.importLibrary("marker");
+  async initMap() {
+    const { Map } = await google.maps.importLibrary("maps");
+
     const map = new Map(document.getElementById("map")!, {
-      center: {lat: 33.747893689359636, lng: -84.38741045065618},
-      zoom: 14,
-      mapId: "4504f8b37365c3d0",
+      center: { lat: 33.747893689359636, lng: -84.38741045065618 },
+      zoom: 15.4,
+      mapId: "4504f8b37365c3d0"
     });
 
-    // Array of marker positions and names
+    const INITIAL_AVAILABLE_SPOTS = 15;
+
     const markers = [
-      {position: {lat: 33.75557670762253, lng: -84.38698213132827}, name: "T Deck"},
-      {position: {lat: 33.75135768192294, lng: -84.3840576168146}, name: "K Deck"},
-      {position: {lat: 33.75334683794284, lng: -84.38414303503839}, name: "M Deck"},
-      {position: {lat: 33.751414302259235, lng: -84.38442667367643}, name: "N Deck"},
-      {position: {lat: 33.7517392377102, lng: -84.38351822583688}, name: "S Deck"},
-      {position: {lat: 33.741606751431206, lng: -84.3902396173013}, name: "Blue Lot"},
-      {position: {lat: 33.73920445683548, lng: -84.39107924418565}, name: "Green Lot"}
-      // Add more markers with positions and names as needed
+      { position: { lat: 33.75557670762253, lng: -84.38698213132827 }, name: "T Deck", spots: INITIAL_AVAILABLE_SPOTS},
+      { position: { lat: 33.75334683794284, lng: -84.38414303503839 }, name: "M Deck", spots: INITIAL_AVAILABLE_SPOTS },
+      { position: { lat: 33.751414302259235, lng: -84.38442667367643 }, name: "N Deck", spots: INITIAL_AVAILABLE_SPOTS },
+      { position: { lat: 33.7517392377102, lng: -84.38351822583688 }, name: "S Deck", spots: INITIAL_AVAILABLE_SPOTS },
+      { position: { lat: 33.741606751431206, lng: -84.3902396173013 }, name: "Blue Lot", spots: INITIAL_AVAILABLE_SPOTS },
+      { position: { lat: 33.73920445683548, lng: -84.39107924418565 }, name: "Green Lot", spots: INITIAL_AVAILABLE_SPOTS }
     ];
 
-    function generateInfo(markerName: string) {
-      switch (markerName) {
-        case "T Deck":
-          return "Spaces Available: 15";
-        case "K Deck":
-          return "Spaces Available: 15";
-        case "M Deck":
-          return "Spaces Available: 15";
-        case "N Deck":
-          return "Spaces Available: 15";
-        case "S Deck":
-          return "Spaces Available: 15";
-        case "Blue Lot":
-          return "Spaces Available: 15";
-        case "Green Lot":
-          return "Spaces Available: 15";
-        default:
-          return "Info not available";
-      }
-    }
-
-    let openInfoWindow: { close: () => void; } | null = null; // Variable to store the currently open info window
-
-    markers.forEach(marker => {
-      const decks = document.createElement("div");
-      decks.className = "decks";
-      decks.textContent = `${marker.name}`;
-
-      const advancedMarker = new AdvancedMarkerElement({
-        map,
+    markers.forEach((marker, i) => {
+      const newMarker = new google.maps.Marker({
         position: marker.position,
-        content: decks,
+        map: map,
+        title: `${i + 1}. ${marker.name}`,
+        label: `${marker.spots} ${marker.name}`,
+        icon: {
+          url: '../../assets/bubble.png', 
+          scaledSize: new google.maps.Size(100, 50), 
+          origin: new google.maps.Point(0, 0), 
+          anchor: new google.maps.Point(20, 40)
+        }
       });
 
       const infoWindow = new google.maps.InfoWindow({
-        content: `<h2>${marker.name}</h2><p>${generateInfo(marker.name)}</p>`
+        content: `<h2>${marker.name}</h2><p>Available spots: ${marker.spots}</p>`
       });
 
-      // Open info window when marker is clicked
-      advancedMarker.addListener('click', function () {
-        // Close the previously opened info window, if any
-        if (openInfoWindow) {
-          openInfoWindow.close();
-        }
-        // Open the current marker's info window
-        infoWindow.open(map, advancedMarker);
-        // Update the currently open info window variable
-        openInfoWindow = infoWindow;
+      newMarker.addListener("click", () => {
+        infoWindow.open(map, newMarker);
       });
     });
   }
-
-
+}
