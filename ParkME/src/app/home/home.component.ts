@@ -3,7 +3,7 @@ import { Component, Injectable, OnInit } from '@angular/core';
 declare var google: any;
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-home', 
   standalone: true,
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
@@ -61,5 +61,6 @@ export class HomeComponent implements OnInit {
         infoWindow.open(map, newMarker);
       });
     });
+    
   }
 }
