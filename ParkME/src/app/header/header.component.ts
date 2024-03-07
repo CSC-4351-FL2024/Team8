@@ -6,7 +6,6 @@ import {SocialAuthService, GoogleSigninButtonModule, SocialUser} from '@abacritt
 import {MatMenu, MatMenuItem, MatMenuTrigger} from "@angular/material/menu";
 declare var google:any;
 import { Buffer } from 'buffer';
-import {SettingsComponent} from "../settings/settings.component";
 
 @Component({
 
@@ -39,11 +38,11 @@ export class HeaderComponent implements OnInit{
 
   LoggedIn = false
   userProfilePicture: undefined;
-  email: any;
-  username:any;
+  public email: string="";
+  public username:string="";
 
 
-  constructor(private authService: SocialAuthService ,public settingComponent:SettingsComponent ) {
+  constructor(private authService: SocialAuthService , ) {
   }
 
   ngOnInit(): void {
@@ -64,7 +63,7 @@ export class HeaderComponent implements OnInit{
     if (user) {
 
       const payload = this.decodeToken(user.idToken)
-      console.log(payload)
+      // console.log(payload)
       sessionStorage.setItem("loggedInUser", JSON.stringify(payload));
       this.setVariable();
 
@@ -73,10 +72,12 @@ export class HeaderComponent implements OnInit{
 
   setVariable() {
     this.userProfilePicture = JSON.parse(sessionStorage.getItem('loggedInUser')!).picture;
+    // console.log(this.userProfilePicture)
     this.LoggedIn = true
     this.email = JSON.parse(sessionStorage.getItem('loggedInUser')!).email;
-    this.username=JSON.parse(sessionStorage.getItem('loggedInUser')!).username;
-    this.settingComponent.setVariable(this.email, this.username );
+    // console.log(this.email)
+    this.username=JSON.parse(sessionStorage.getItem('loggedInUser')!).name;
+    // console.log(this.username)
   }
 
     signOut() {
