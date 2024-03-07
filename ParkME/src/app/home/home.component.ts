@@ -1,4 +1,5 @@
 import { Component, Injectable, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 declare var google: any;
 
@@ -13,7 +14,7 @@ declare var google: any;
   providedIn: 'root'
 })
 export class HomeComponent implements OnInit {
-  constructor() { }
+  constructor(private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.initMap();
@@ -61,6 +62,13 @@ export class HomeComponent implements OnInit {
         infoWindow.open(map, newMarker);
       });
     });
-    
+  }
+
+  reserveButtonClicked() {
+      this.snackBar.open('Parking spot reserved', 'Dismiss', {
+        duration: 3000, 
+        horizontalPosition: 'center', 
+        verticalPosition: 'top'
+      });
   }
 }
