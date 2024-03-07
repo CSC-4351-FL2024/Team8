@@ -1,11 +1,11 @@
 .header {
   overflow: hidden;
-  background-color: #0039a6;
+  background-color: #ffffff;
   height: 60px!important;
   padding-left: 10px;
   padding-right: 10px;
+  border-bottom: 1px solid rgb(208, 208, 208); 
 }
-
 
 .header a {
   float: left;
@@ -27,7 +27,7 @@
 }
 
 .routerLinkActive{
-  background: white;
+  background: rgb(255, 255, 255);
 }
 
 .googleSign{
@@ -49,4 +49,16 @@ img {
 .logo{
   float: left!important;
   font-size: 30px;
+}
+
+.logoInputs p{
+  color: blue;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 30px;
+  margin-top: 30px;
+}
+
+.logoInputs img{
+  width: 220%;
+  height: 80px;
 }

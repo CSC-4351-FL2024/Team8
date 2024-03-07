@@ -61,5 +61,6 @@ export class HomeComponent implements OnInit {
         infoWindow.open(map, newMarker);
       });
     });
+    
   }
 }
