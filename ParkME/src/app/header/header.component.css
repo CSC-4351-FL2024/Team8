@@ -68,11 +68,13 @@ img {
   padding: 12px;
   text-decoration: none;
   font-size: 18px;
+  font-family: 'Open Sans', Arial, sans-serif;
   line-height: 25px;
   border-radius: 4px;
   margin-right: 150px; /* Add some space between buttons */
  }
  
  .header .nav-button:hover {
-  background-color: #ddd; /* Change background color on hover */
+  color: rgb(0, 57, 166); 
+  background-color: transparent; 
  }
