@@ -1,13 +1,14 @@
 package com.example.ParkMEHandler;
 
 import java.util.List;
-
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-import com.example.ParkMEHandler.User;
+@Repository
+public interface UserRepository extends JpaRepository<User, Integer> {
+    // Custom query method to find users by their username
+    List<User> findByUserName(String userName);
 
-public interface UserRepository extends JpaRepository<User, Long> {
-    List<User> findByPublished(boolean published);
-
-    List<User> findByTitleContaining(String title);
+    // If you have any other specific queries, you can define them here as well
 }
+

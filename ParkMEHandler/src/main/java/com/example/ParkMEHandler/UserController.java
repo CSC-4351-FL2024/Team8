@@ -1,8 +1,11 @@
 package com.example.ParkMEHandler;
 
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -28,25 +31,27 @@ public class UserController {
     }
 
     // Get a single user by ID
-    @GetMapping("/{userId}")
-    public ResponseEntity<User> getUserById(@PathVariable Integer userId) {
-        User user = userService.getUserById(userId)
-                .orElseThrow(() -> new RuntimeException("User not found with id :" + userId)); // Use a more specific
-                                                                                               // exception if available
-        return ResponseEntity.ok(user);
+    @GetMapping("/users/{userId}")
+    public ResponseEntity<User> getUserById(@PathVariable Long userId) {
+        try {
+            User user = userService.getUserById(userId);
+            return ResponseEntity.ok(user);
+        } catch (EntityNotFoundException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found with id: " + userId, e);
+        }
     }
 
     // Update a user
     @PutMapping("/{userId}")
     public ResponseEntity<User> updateUser(@PathVariable Integer userId, @RequestBody User userDetails) {
-        User updatedUser = userService.updateUser(userId, userDetails);
+        User updatedUser = userService.updateUser(Long.valueOf(userId), userDetails);
         return ResponseEntity.ok(updatedUser);
     }
 
     // Delete a user
     @DeleteMapping("/{userId}")
     public ResponseEntity<Void> deleteUser(@PathVariable Integer userId) {
-        userService.deleteUser(userId);
+        userService.deleteUser(Long.valueOf(userId));
         return ResponseEntity.ok().build();
     }
 }
