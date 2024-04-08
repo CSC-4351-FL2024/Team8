@@ -1,63 +1,76 @@
 package com.example.ParkMEHandler;
 
-import java.sql.Time;
-// import javax.persistence.*; // for Spring Boot 2
-import jakarta.persistence.*; // for Spring Boot 3
+import jakarta.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "User")
+@Table(name = "users")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Integer userId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long userId;
 
-    private String userName;
+    @Column(nullable = false, unique = true)
+    private String email;
 
-    private String email_id;
+    private String parkingDeckBooked;
 
-    private Time bookTime;
+    @Column(columnDefinition = "TIMESTAMP WITH TIME ZONE")
+    private LocalDateTime bookTime;
 
-    private String plateNumber;
+    private String licensePlateNumber;
 
-    public Integer getUserId() {
+    // Constructors
+    public User() {
+    }
+
+    public User(String email, String parkingDeckBooked, LocalDateTime bookTime, String licensePlateNumber) {
+        this.email = email;
+        this.parkingDeckBooked = parkingDeckBooked;
+        this.bookTime = bookTime;
+        this.licensePlateNumber = licensePlateNumber;
+    }
+
+    // Getters
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public String getEmail() {
+        return email;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getParkingDeckBooked() {
+        return parkingDeckBooked;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getEmail_id() {
-        return email_id;
-    }
-
-    public void setEmail_id(String email_id) {
-        this.email_id = email_id;
-    }
-
-    public Time getBookTime() {
+    public LocalDateTime getBookTime() {
         return bookTime;
     }
 
-    public void setBookTime(Time bookTime) {
+    public String getLicensePlateNumber() {
+        return licensePlateNumber;
+    }
+
+    // Setters
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setParkingDeckBooked(String parkingDeckBooked) {
+        this.parkingDeckBooked = parkingDeckBooked;
+    }
+
+    public void setBookTime(LocalDateTime bookTime) {
         this.bookTime = bookTime;
     }
 
-    public String getPlateNumber() {
-        return plateNumber;
+    public void setLicensePlateNumber(String licensePlateNumber) {
+        this.licensePlateNumber = licensePlateNumber;
     }
-
-    public void setPlateNumber(String plateNumber) {
-        this.plateNumber = plateNumber;
-    }
-
-
 }
+

@@ -9,8 +9,12 @@ import java.util.List;
 @Service
 public class UserService {
 
+    private final UserRepository userRepository;
+
     @Autowired
-    private UserRepository userRepository;
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     // Create a new user
     @Transactional
@@ -34,17 +38,18 @@ public class UserService {
     // Update a user
     @Transactional
     public User updateUser(Long userId, User userDetails) {
-        User user = userRepository.findById(Math.toIntExact(userId))
+        User existingUser = userRepository.findById(Math.toIntExact(userId))
                 .orElseThrow(() -> new EntityNotFoundException("User not found with id: " + userId));
 
-        // Update user details here
-        // Assuming setUserEmail and other setters are correctly named based on your User entity
-        user.setUserName(userDetails.getUserName());
-        user.setEmail_id(userDetails.getEmail_id()); // Adjusted based on standard naming conventions
-        user.setBookTime(userDetails.getBookTime());
-        user.setPlateNumber(userDetails.getPlateNumber());
+        updateUserData(existingUser, userDetails);
+        return userRepository.save(existingUser);
+    }
 
-        return userRepository.save(user);
+    private void updateUserData(User existingUser, User userDetails) {
+        existingUser.setEmail(userDetails.getEmail());
+        existingUser.setParkingDeckBooked(userDetails.getParkingDeckBooked());
+        existingUser.setBookTime(userDetails.getBookTime());
+        existingUser.setLicensePlateNumber(userDetails.getLicensePlateNumber());
     }
 
     // Delete a user
@@ -52,6 +57,7 @@ public class UserService {
     public void deleteUser(Long userId) {
         User user = userRepository.findById(Math.toIntExact(userId))
                 .orElseThrow(() -> new EntityNotFoundException("User not found with id: " + userId));
-        userRepository.deleteById(Math.toIntExact(userId));
+        userRepository.delete(user);
     }
 }
+
