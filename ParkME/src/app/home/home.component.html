@@ -1,68 +1,72 @@
 <div class="banner">
-  <img src="../../assets/banner.jpeg" alt="banner">
-  <p id="slogan">RESERVE.<br><br><br>
-    PARK.<br><br><br>
+  <img src="../../assets/banner.jpeg" alt="banner" />
+  <p id="slogan">
+    RESERVE.<br /><br /><br />
+    PARK.<br /><br /><br />
     GO.
   </p>
-  <p id="description">ParkMe is a web application tailored for students within the university system for daily reserving available parking slots on campus within a convenient 30-minute timeframe.
+  <p id="description">
+    ParkMe is a web application tailored for students within the university
+    system for daily reserving available parking slots on campus within a
+    convenient 30-minute timeframe.
   </p>
 </div>
 <div class="main">
   <div id="content">
     <div class="deck">
       <div class="deckName">
-        <img class="deck-img" src="../../assets/TDeck.jpeg" alt="TDeck">
+        <img class="deck-img" src="../../assets/TDeck.jpeg" alt="TDeck" />
       </div>
       <div class="spots">
         <p>T DECK</p>
-        <button (click)="reserveButtonClicked()">Reserve</button>
+        <button (click)="reserveButtonClicked('T')">Reserve</button>
       </div>
     </div>
     <div class="deck">
       <div class="deck-img">
-        <img class="deck-img" src="../../assets/MDeck.webp" alt="MDeck">
+        <img class="deck-img" src="../../assets/MDeck.webp" alt="MDeck" />
       </div>
       <div class="spots">
         <p>M DECK</p>
-        <button (click)="reserveButtonClicked()">Reserve</button>
+        <button (click)="reserveButtonClicked('M')">Reserve</button>
       </div>
     </div>
     <div class="deck">
       <div class="deck-img">
-        <img class="deck-img" src="../../assets/NDeck.webp" alt="NDeck">
+        <img class="deck-img" src="../../assets/NDeck.webp" alt="NDeck" />
       </div>
       <div class="spots">
         <p>N DECK</p>
-        <button (click)="reserveButtonClicked()">Reserve</button>
+        <button (click)="reserveButtonClicked('N')">Reserve</button>
       </div>
     </div>
     <div class="deck">
       <div class="deck-img">
-        <img class="deck-img" src="../../assets/SDeck.webp" alt="SDeck">
+        <img class="deck-img" src="../../assets/SDeck.webp" alt="SDeck" />
       </div>
       <div class="spots">
         <p>S DECK</p>
-        <button (click)="reserveButtonClicked()">Reserve</button>
+        <button (click)="reserveButtonClicked('S')">Reserve</button>
       </div>
     </div>
     <div class="deck">
       <div class="deck-img">
-        <img class="deck-img" src="../../assets/blueLot-.png" alt="BlueLot">
+        <img class="deck-img" src="../../assets/blueLot-.png" alt="BlueLot" />
       </div>
       <div class="spots">
         <p>BLUE LOT</p>
-        <button (click)="reserveButtonClicked()">Reserve</button>
+        <button (click)="reserveButtonClicked('B')">Reserve</button>
       </div>
     </div>
     <div class="deck">
       <div class="deck-img">
-        <img class="deck-img" src="../../assets/greenLot.jpeg" alt="GreenLot">
+        <img class="deck-img" src="../../assets/greenLot.jpeg" alt="GreenLot" />
       </div>
       <div class="spots">
         <p>GREEN LOT</p>
-        <button (click)="reserveButtonClicked()">Reserve</button>
+        <button (click)="reserveButtonClicked('G')">Reserve</button>
       </div>
     </div>
   </div>
-  <div id = "map"></div>
+  <div id="map"></div>
 </div>

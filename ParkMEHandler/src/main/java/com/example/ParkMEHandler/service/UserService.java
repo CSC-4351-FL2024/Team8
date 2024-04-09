@@ -1,5 +1,8 @@
-package com.example.ParkMEHandler;
+package com.example.ParkMEHandler.service;
 
+import com.example.ParkMEHandler.User;
+import com.example.ParkMEHandler.Repo.UserRepository;
+import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +22,12 @@ public class UserService {
     // Create a new user
     @Transactional
     public User createUser(User user) {
+        // Check if the user already exists based on a unique attribute, e.g., email or
+        // userId
+        Boolean userExists = userRepository.existsById(user.getUserId());
+        if (userExists) {
+            throw new EntityExistsException("User already exists with id: " + user.getUserId());
+        }
         return userRepository.save(user);
     }
 
@@ -59,5 +68,12 @@ public class UserService {
                 .orElseThrow(() -> new EntityNotFoundException("User not found with id: " + userId));
         userRepository.delete(user);
     }
-}
 
+    public User reserveParkingDeck(Long userId, String parkingDeckBooked) {
+        User existingUser = userRepository.findById(Math.toIntExact(userId))
+                .orElseThrow(() -> new EntityNotFoundException("User not found with id: " + userId));
+
+        existingUser.setParkingDeckBooked(parkingDeckBooked);
+        return userRepository.save(existingUser);
+    }
+}

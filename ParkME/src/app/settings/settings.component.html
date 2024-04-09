@@ -1,25 +1,17 @@
-       <body>
-        <div class="container">
-            <div class="verticalCenter">
-                <div class="account"><h2>Account Setting</h2></div>
-                <div class="form">
-                          <mat-form-field >
-                            <mat-label >Name</mat-label>
-                            <input matInput [value]="headerComponent.username" [formControl]="disableForm">
-                          </mat-form-field>
-                  <mat-form-field  >
-                            <mat-label>Email</mat-label>
-                            <input matInput [value]="headerComponent.email" [formControl]="disableForm">
-                  </mat-form-field >
-                  <mat-form-field>
-                    <input matInput placeholder="License Plate Number">
-                  </mat-form-field>
-                  <mat-form-field>
-                    <input matInput placeholder="Vehicle Color">
-                  </mat-form-field>
-                  <button mat-button id="submit" (click)="handleSubmit()">Submit</button>
-                </div>
-            </div>
-        </div>
+<body>
+  <div class="container">
+    <div class="verticalCenter">
+      <div class="account"><h2>Account Setting</h2></div>
+      <div class="form">
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input matInput [value]="user?.email" [formControl]="disableForm" />
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="License Plate Number" />
+        </mat-form-field>
+        <button mat-button id="submit" (click)="handleSubmit()">Submit</button>
+      </div>
+    </div>
+  </div>
 </body>
-

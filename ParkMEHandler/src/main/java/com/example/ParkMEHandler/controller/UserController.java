@@ -1,5 +1,7 @@
-package com.example.ParkMEHandler;
+package com.example.ParkMEHandler.controller;
 
+import com.example.ParkMEHandler.User;
+import com.example.ParkMEHandler.service.UserService;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -28,22 +30,7 @@ public class UserController {
     }
 
     // Get all users
-    @GetMapping("/")
-    public ResponseEntity<List<User>> getAllUsers() {
-        List<User> users = userService.getAllUsers();
-        return ResponseEntity.ok(users);
-    }
-
     // Get a single user by ID
-    @GetMapping("/{userId}")
-    public ResponseEntity<User> getUserById(@PathVariable Long userId) {
-        try {
-            User user = userService.getUserById(userId);
-            return ResponseEntity.ok(user);
-        } catch (EntityNotFoundException e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found with id: " + userId, e);
-        }
-    }
 
     // Update a user
     @PutMapping("/{userId}")
@@ -66,5 +53,14 @@ public class UserController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found with id: " + userId, e);
         }
     }
-}
 
+    @PutMapping("/{userId}/reserve")
+    public ResponseEntity<User> reserveParkingDeck(@PathVariable Long userId, @RequestBody String parkingDeck) {
+        try {
+            User user = userService.reserveParkingDeck(userId, parkingDeck);
+            return ResponseEntity.ok(user);
+        } catch (EntityNotFoundException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found with id: " + userId, e);
+        }
+    }
+}

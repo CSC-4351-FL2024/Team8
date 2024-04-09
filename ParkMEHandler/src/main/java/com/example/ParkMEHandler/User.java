@@ -32,8 +32,8 @@ public class User {
     }
 
     // Getters
-    public Long getUserId() {
-        return userId;
+    public Integer getUserId() {
+        return Math.toIntExact(userId);
     }
 
     public String getEmail() {
