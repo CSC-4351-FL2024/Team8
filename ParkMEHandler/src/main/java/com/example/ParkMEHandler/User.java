@@ -1,6 +1,8 @@
 package com.example.ParkMEHandler;
 
 import jakarta.persistence.*;
+
+import java.math.BigInteger;
 import java.time.LocalDateTime;
 
 @Entity
@@ -8,7 +10,7 @@ import java.time.LocalDateTime;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId;
+    private BigInteger userId;
 
     @Column(nullable = false, unique = true)
     private String email;
@@ -24,7 +26,7 @@ public class User {
     public User() {
     }
 
-    public User(Long userId, String email, String parkingDeckBooked, LocalDateTime bookTime, String licensePlateNumber) {
+    public User(BigInteger userId, String email, String parkingDeckBooked, LocalDateTime bookTime, String licensePlateNumber) {
         this.userId=userId;
         this.email = email;
         this.parkingDeckBooked = parkingDeckBooked;
@@ -33,7 +35,7 @@ public class User {
     }
 
     // Getters
-    public Long getUserId() {
+    public BigInteger getUserId() {
         return (userId);
     }
 
@@ -54,7 +56,7 @@ public class User {
     }
 
     // Setters
-    public void setUserId(Long userId) {
+    public void setUserId(BigInteger userId) {
         this.userId = userId;
     }
 

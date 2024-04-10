@@ -7,6 +7,8 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.math.BigInteger;
 import java.util.List;
 
 @Service
@@ -22,9 +24,8 @@ public class UserService {
     // Create a new user
     @Transactional
     public User createUser(User user) {
-        // Check if the user already exists based on a unique attribute, e.g., email or
-        // userId
-        Boolean userExists = userRepository.existsById(Math.toIntExact(user.getUserId()));
+        // Check if the user already exists based on a unique attribute, e.g., email
+        Boolean userExists = userRepository.existsById(user.getUserId());
         if (userExists) {
             throw new EntityExistsException("User already exists with id: " + user.getUserId());
         }
@@ -39,14 +40,14 @@ public class UserService {
 
     // Retrieve a single user by ID
     @Transactional(readOnly = true)
-    public User getUserById(Long userId) {
-        return userRepository.findById(Math.toIntExact(userId))
+    public User getUserById(BigInteger userId) {
+        return userRepository.findById(userId)
                 .orElseThrow(() -> new EntityNotFoundException("User not found with id: " + userId));
     }
 
     // Update a user
     @Transactional
-    public User updateUser(Long userId, User userDetails) {
+    public User updateUser(BigInteger userId, User userDetails) {
         User existingUser = getUserById(userId);
 
         updateUserData(existingUser, userDetails);
@@ -63,12 +64,12 @@ public class UserService {
 
     // Delete a user
     @Transactional
-    public void deleteUser(Long userId) {
+    public void deleteUser(BigInteger userId) {
         User existingUser = getUserById(userId);
         userRepository.delete(existingUser);
     }
 
-    public User reserveParkingDeck(Long userId, String parkingDeckBooked) {
+    public User reserveParkingDeck(BigInteger userId, String parkingDeckBooked) {
         User existingUser = getUserById(userId);
 
         existingUser.setParkingDeckBooked(parkingDeckBooked);

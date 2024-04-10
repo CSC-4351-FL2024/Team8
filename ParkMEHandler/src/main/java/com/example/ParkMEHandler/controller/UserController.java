@@ -3,6 +3,9 @@ package com.example.ParkMEHandler.controller;
 import com.example.ParkMEHandler.User;
 import com.example.ParkMEHandler.service.UserService;
 import jakarta.persistence.EntityNotFoundException;
+
+import java.math.BigInteger;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -29,7 +32,8 @@ public class UserController {
     }
 
     @GetMapping("/{userId}")
-    public ResponseEntity<User> getUserById(@PathVariable Long userId) {
+    public ResponseEntity<User> getUserById(@PathVariable BigInteger userId) {
+        System.out.println("running");
         try {
             User user = userService.getUserById(userId);
             return ResponseEntity.ok(user);
@@ -42,7 +46,7 @@ public class UserController {
 
     // Update a user
     @PutMapping("/{userId}")
-    public ResponseEntity<User> updateUser(@PathVariable Long userId, @RequestBody User userDetails) {
+    public ResponseEntity<User> updateUser(@PathVariable BigInteger userId, @RequestBody User userDetails) {
         try {
             User updatedUser = userService.updateUser(userId, userDetails);
             return ResponseEntity.ok(updatedUser);
@@ -53,7 +57,7 @@ public class UserController {
 
     // Delete a user
     @DeleteMapping("/{userId}")
-    public ResponseEntity<Void> deleteUser(@PathVariable Long userId) {
+    public ResponseEntity<Void> deleteUser(@PathVariable BigInteger userId) {
         try {
             userService.deleteUser(userId);
             return ResponseEntity.noContent().build();
@@ -63,7 +67,7 @@ public class UserController {
     }
 
     @PutMapping("/{userId}/reserve")
-    public ResponseEntity<User> reserveParkingDeck(@PathVariable Long userId, @RequestBody String parkingDeck) {
+    public ResponseEntity<User> reserveParkingDeck(@PathVariable BigInteger userId, @RequestBody String parkingDeck) {
         try {
             User user = userService.reserveParkingDeck(userId, parkingDeck);
             return ResponseEntity.ok(user);
