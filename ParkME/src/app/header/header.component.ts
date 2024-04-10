@@ -12,6 +12,8 @@ declare var google: any;
 import { Buffer } from 'buffer';
 import { User } from '../users';
 import { UserDataService } from '../services/user-data.service';
+import { UserService } from '../services/user-service.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-header',
   standalone: true,
@@ -32,6 +34,7 @@ import { UserDataService } from '../services/user-data.service';
 })
 @Injectable({ providedIn: 'root' })
 export class HeaderComponent implements OnInit {
+  user: User | null = null;
   LoggedIn = false;
   userProfilePicture: undefined;
   public email: string = '';
@@ -40,13 +43,16 @@ export class HeaderComponent implements OnInit {
   constructor(
     private authService: SocialAuthService,
     private userDataService: UserDataService,
+    private userService: UserService,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
     this.authService.authState.subscribe((user) => {
       this.handleLogin(user);
-      console.log(user);
+      // console.log(user);
     });
+    this.userDataService.currentUser.subscribe((user) => (this.user = user));
   }
 
   private decodeToken(token: string) {
@@ -58,13 +64,12 @@ export class HeaderComponent implements OnInit {
   handleLogin(user: SocialUser) {
     if (user) {
       const payload = this.decodeToken(user.idToken);
-      console.log(payload);
       sessionStorage.setItem('loggedInUser', JSON.stringify(payload));
-      this.setVariable(payload);
+      this.setVariable(payload, user.id);
     }
   }
 
-  setVariable(payload: any) {
+  setVariable(payload: any, Id: any) {
     this.userProfilePicture = JSON.parse(
       sessionStorage.getItem('loggedInUser')!,
     ).picture;
@@ -74,12 +79,20 @@ export class HeaderComponent implements OnInit {
     // console.log(this.email)
     this.username = JSON.parse(sessionStorage.getItem('loggedInUser')!).name;
     // console.log(this.username)
-
-    const updatedUser: User = {
-      email: payload.email,
-      userId: payload.id,
-    };
-    this.userDataService.updateUser(updatedUser);
+    this.userService.getUserById(Id).subscribe({
+      next: (response) => {
+        console.log(response);
+        // Handle successful user creation (e.g., redirecting, displaying a success message)
+      },
+      error: () => {
+        const updatedUser: User = {
+          email: payload.email,
+          userId: Id,
+        };
+        this.userDataService.updateUser(updatedUser);
+        this.router.navigate(['/settings']);
+      },
+    });
   }
 
   signOut() {

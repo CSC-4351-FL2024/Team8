@@ -98,13 +98,14 @@ export class HomeComponent implements OnInit {
   reserveButtonClicked(deck: string): void {
     this.userService.reserveParkingDeck(this.user!, deck).subscribe({
       next: (response) => {
-        const updatedUser: User = {
-          email: this.user?.email!,
-          userId: this.user?.userId!,
-          licensePlateNumber: this.user?.licensePlateNumber!,
-          parkingDeckBooked: deck,
-        };
-        this.userDataService.updateUser(updatedUser);
+        console.log(response);
+        //        const updatedUser: User = {
+        //        email: this.user?.email!,
+        //      userId: this.user?.userId!,
+        //    licensePlateNumber: this.user?.licensePlateNumber!,
+        //    parkingDeckBooked: deck,
+        // };
+        // this.userDataService.updateUser(updatedUser);
         // Handle success, maybe show a success message
       },
       error: (error) => {

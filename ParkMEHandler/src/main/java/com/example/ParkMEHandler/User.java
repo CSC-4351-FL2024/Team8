@@ -24,7 +24,8 @@ public class User {
     public User() {
     }
 
-    public User(String email, String parkingDeckBooked, LocalDateTime bookTime, String licensePlateNumber) {
+    public User(Long userId, String email, String parkingDeckBooked, LocalDateTime bookTime, String licensePlateNumber) {
+        this.userId=userId;
         this.email = email;
         this.parkingDeckBooked = parkingDeckBooked;
         this.bookTime = bookTime;
@@ -32,8 +33,8 @@ public class User {
     }
 
     // Getters
-    public Integer getUserId() {
-        return Math.toIntExact(userId);
+    public Long getUserId() {
+        return (userId);
     }
 
     public String getEmail() {

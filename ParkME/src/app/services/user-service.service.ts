@@ -25,4 +25,11 @@ export class UserService {
       parkingDeck,
     );
   }
+
+  getUserById(userId: number): Observable<any> {
+    return this.http.get(`${baseUrl}/${userId}`);
+  }
+  //createUser(user: User): Observable<User> {
+  // return this.http.post<User>(baseUrl, user); // Removed the trailing slash
+  //}
 }

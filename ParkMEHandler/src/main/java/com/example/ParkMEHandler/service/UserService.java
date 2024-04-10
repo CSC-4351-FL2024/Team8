@@ -24,7 +24,7 @@ public class UserService {
     public User createUser(User user) {
         // Check if the user already exists based on a unique attribute, e.g., email or
         // userId
-        Boolean userExists = userRepository.existsById(user.getUserId());
+        Boolean userExists = userRepository.existsById(Math.toIntExact(user.getUserId()));
         if (userExists) {
             throw new EntityExistsException("User already exists with id: " + user.getUserId());
         }
@@ -47,14 +47,14 @@ public class UserService {
     // Update a user
     @Transactional
     public User updateUser(Long userId, User userDetails) {
-        User existingUser = userRepository.findById(Math.toIntExact(userId))
-                .orElseThrow(() -> new EntityNotFoundException("User not found with id: " + userId));
+        User existingUser = getUserById(userId);
 
         updateUserData(existingUser, userDetails);
         return userRepository.save(existingUser);
     }
 
     private void updateUserData(User existingUser, User userDetails) {
+        existingUser.setUserId(userDetails.getUserId());
         existingUser.setEmail(userDetails.getEmail());
         existingUser.setParkingDeckBooked(userDetails.getParkingDeckBooked());
         existingUser.setBookTime(userDetails.getBookTime());
@@ -64,14 +64,12 @@ public class UserService {
     // Delete a user
     @Transactional
     public void deleteUser(Long userId) {
-        User user = userRepository.findById(Math.toIntExact(userId))
-                .orElseThrow(() -> new EntityNotFoundException("User not found with id: " + userId));
-        userRepository.delete(user);
+        User existingUser = getUserById(userId);
+        userRepository.delete(existingUser);
     }
 
     public User reserveParkingDeck(Long userId, String parkingDeckBooked) {
-        User existingUser = userRepository.findById(Math.toIntExact(userId))
-                .orElseThrow(() -> new EntityNotFoundException("User not found with id: " + userId));
+        User existingUser = getUserById(userId);
 
         existingUser.setParkingDeckBooked(parkingDeckBooked);
         return userRepository.save(existingUser);

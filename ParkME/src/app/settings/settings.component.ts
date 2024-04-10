@@ -22,7 +22,7 @@ import { UserService } from '../services/user-service.service';
 export class SettingsComponent implements OnInit {
   disableForm: any;
   user: User | null = null;
-
+  licensePlate = new FormControl('');
   constructor(
     private userDataService: UserDataService,
     private userService: UserService,
@@ -34,6 +34,32 @@ export class SettingsComponent implements OnInit {
   }
 
   handleSubmit() {
-    this.userService.createUser(this.user!);
+    const updatedUser: User = {
+      email: this.user?.email!,
+      userId: this.user?.userId!,
+      licensePlateNumber: this.licensePlate.value!,
+    };
+    this.userDataService.updateUser(updatedUser);
+    console.log(this.licensePlate.value);
+    console.log(this.user?.licensePlateNumber);
+    this.userService.createUser(this.user!).subscribe({
+      next: (user) => {
+        console.log('User created successfully', user);
+        // Handle successful user creation (e.g., redirecting, displaying a success message)
+      },
+      error: () => {
+        this.updateUser();
+      },
+    });
+  }
+  updateUser() {
+    this.userService.updateUser(this.user!).subscribe({
+      next: (user) => {
+        console.log('User created successfully', user);
+      },
+      error: (error) => {
+        console.log('skill issue i guess', error);
+      },
+    });
   }
 }
