@@ -90,7 +90,7 @@ export class HeaderComponent implements OnInit {
           userId: Id,
         };
         this.userDataService.updateUser(updatedUser);
-        this.router.navigate(['/settings']);
+        this.router.navigate(['src/app/settings']);
       },
     });
   }
