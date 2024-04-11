@@ -1,7 +1,7 @@
 import { Component, Injectable, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 declare var google: any;
-import { UserService } from '../services/user-service.service';
+import { UserService } from '../services/data-service.service';
 import { UserDataService } from '../services/user-data.service';
 import { User } from '../users';
 import { response } from 'express';

@@ -12,7 +12,7 @@ declare var google: any;
 import { Buffer } from 'buffer';
 import { User } from '../users';
 import { UserDataService } from '../services/user-data.service';
-import { UserService } from '../services/user-service.service';
+import { UserService } from '../services/data-service.service';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-header',

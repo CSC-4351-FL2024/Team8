@@ -6,7 +6,7 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from '../header/header.component';
 import { UserDataService } from '../services/user-data.service';
 import { User } from '../users';
-import { UserService } from '../services/user-service.service';
+import { UserService } from '../services/data-service.service';
 import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root',
