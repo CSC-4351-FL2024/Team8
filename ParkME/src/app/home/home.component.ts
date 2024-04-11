@@ -18,6 +18,7 @@ import { CommonModule, NgOptimizedImage } from '@angular/common';
 })
 export class HomeComponent implements OnInit {
   user: User | null = null;
+
   constructor(
     private snackBar: MatSnackBar,
     private userService: UserService,
@@ -98,6 +99,7 @@ export class HomeComponent implements OnInit {
   }
 
   reserveButtonClicked(deck: string): void {
+    console.log(this.user);
     this.userService.reserveParkingDeck(this.user!, deck).subscribe({
       next: (response) => {
         console.log(response);

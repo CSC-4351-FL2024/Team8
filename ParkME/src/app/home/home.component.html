@@ -20,7 +20,7 @@
       <div class="spots">
         <p>T DECK</p>
         <button
-          *ngIf="!user.parkingDeckBooked!"
+          *ngIf="!user?.parkingDeckBooked"
           (click)="reserveButtonClicked('T')"
         >
           Reserve
@@ -34,7 +34,7 @@
       <div class="spots">
         <p>M DECK</p>
         <button
-          *ngIf="!user.parkingDeckBooked!"
+          *ngIf="!user?.parkingDeckBooked"
           (click)="reserveButtonClicked('M')"
         >
           Reserve
@@ -48,7 +48,7 @@
       <div class="spots">
         <p>N DECK</p>
         <button
-          *ngIf="!user.parkingDeckBooked!"
+          *ngIf="!user?.parkingDeckBooked"
           (click)="reserveButtonClicked('N')"
         >
           Reserve
@@ -62,7 +62,7 @@
       <div class="spots">
         <p>S DECK</p>
         <button
-          *ngIf="!user.parkingDeckBooked!"
+          *ngIf="!user?.parkingDeckBooked"
           (click)="reserveButtonClicked('S')"
         >
           Reserve
@@ -76,7 +76,7 @@
       <div class="spots">
         <p>BLUE LOT</p>
         <button
-          *ngIf="!user.parkingDeckBooked!"
+          *ngIf="!user?.parkingDeckBooked"
           (click)="reserveButtonClicked('B')"
         >
           Reserve
@@ -90,7 +90,7 @@
       <div class="spots">
         <p>GREEN LOT</p>
         <button
-          *ngIf="!user.parkingDeckBooked!"
+          *ngIf="!user?.parkingDeckBooked"
           (click)="reserveButtonClicked('G')"
         >
           Reserve

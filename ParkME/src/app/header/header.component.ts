@@ -65,11 +65,11 @@ export class HeaderComponent implements OnInit {
     if (user) {
       const payload = this.decodeToken(user.idToken);
       sessionStorage.setItem('loggedInUser', JSON.stringify(payload));
-      this.setVariable(payload, user.id);
+      this.setVariable(payload);
     }
   }
 
-  setVariable(payload: any, Id: any) {
+  setVariable(payload: any) {
     this.userProfilePicture = JSON.parse(
       sessionStorage.getItem('loggedInUser')!,
     ).picture;
@@ -79,22 +79,20 @@ export class HeaderComponent implements OnInit {
     // console.log(this.email)
     this.username = JSON.parse(sessionStorage.getItem('loggedInUser')!).name;
     // console.log(this.username)
-    this.userService.getUserById(Id).subscribe({
+    this.userService.getUserById(this.email).subscribe({
       next: (response) => {
         const updatedUser: User = {
           email: response.email,
-          userId: response.userId,
           bookTime: response.bookTime,
-          parkingDeckBooked: response.licensePlateNumber,
+          parkingDeckBooked: response.parkingDeckBooked,
           licensePlateNumber: response.licensePlateNumber,
         };
+
         this.userDataService.updateUser(updatedUser);
-        // Handle successful user creation (e.g., redirecting, displaying a success message)
       },
       error: () => {
         const updatedUser: User = {
           email: payload.email,
-          userId: Id,
         };
         this.userDataService.updateUser(updatedUser);
         this.router.navigate(['src/app/settings']);

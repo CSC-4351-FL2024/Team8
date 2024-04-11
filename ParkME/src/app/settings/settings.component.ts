@@ -7,7 +7,6 @@ import { HeaderComponent } from '../header/header.component';
 import { UserDataService } from '../services/user-data.service';
 import { User } from '../users';
 import { UserService } from '../services/user-service.service';
-import { routes } from '../app.routes';
 import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root',
@@ -38,13 +37,13 @@ export class SettingsComponent implements OnInit {
   handleSubmit() {
     const updatedUser: User = {
       email: this.user?.email!,
-      userId: this.user?.userId!,
       licensePlateNumber: this.licensePlate.value!.toUpperCase(),
     };
     this.userDataService.updateUser(updatedUser);
     this.userService.createUser(this.user!).subscribe({
       next: (user) => {
         console.log('User created successfully', user);
+        this.router.navigate(['src/app/home']);
         // Handle successful user creation (e.g., redirecting, displaying a success message)
       },
       error: () => {
@@ -56,7 +55,6 @@ export class SettingsComponent implements OnInit {
     this.userService.updateUser(this.user!).subscribe({
       next: (user) => {
         console.log('User created successfully', user);
-        this.router.navigate(['/']);
       },
       error: (error) => {
         console.log('skill issue i guess', error);

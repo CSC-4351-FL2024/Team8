@@ -16,18 +16,15 @@ export class UserService {
   }
 
   updateUser(user: User): Observable<User> {
-    return this.http.put<User>(`${baseUrl}/${user.userId}`, user);
+    return this.http.put<User>(`${baseUrl}/${user.email}`, user);
   }
 
   reserveParkingDeck(user: User, parkingDeck: string): Observable<User> {
-    return this.http.put<User>(
-      `${baseUrl}/${user.userId}/reserve`,
-      parkingDeck,
-    );
+    return this.http.put<User>(`${baseUrl}/${user.email}/reserve`, parkingDeck);
   }
 
-  getUserById(userId: number): Observable<any> {
-    return this.http.get(`${baseUrl}/${userId}`);
+  getUserById(userEmail: String): Observable<any> {
+    return this.http.get(`${baseUrl}/${userEmail}`);
   }
   //createUser(user: User): Observable<User> {
   // return this.http.post<User>(baseUrl, user); // Removed the trailing slash

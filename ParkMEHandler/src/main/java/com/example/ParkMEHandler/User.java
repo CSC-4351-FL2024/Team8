@@ -2,7 +2,6 @@ package com.example.ParkMEHandler;
 
 import jakarta.persistence.*;
 
-import java.math.BigInteger;
 import java.util.Date;
 
 @Entity
@@ -10,10 +9,7 @@ import java.util.Date;
 public class User {
 
     @Id
-    @Column(name = "userid")
-    private BigInteger userId;
-
-    @Column(name = "email")
+    @Column(name = "email", nullable = false)
     private String email;
 
     @Column(name = "licenseplatenumber")
@@ -22,6 +18,7 @@ public class User {
     @Column(name = "parkingdeckbooked")
     private String parkingDeckBooked;
 
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "booktime")
     private Date bookTime;
 
@@ -31,51 +28,40 @@ public class User {
     public User() {
     }
 
-    public User(BigInteger userId, String email, String parkingDeckBooked, Date bookTime,
-            String licensePlateNumber) {
-        this.userId = userId;
+    public User(String email, String parkingDeckBooked, Date bookTime, String licensePlateNumber) {
         this.email = email;
         this.parkingDeckBooked = parkingDeckBooked;
         this.bookTime = bookTime;
         this.licensePlateNumber = licensePlateNumber;
     }
 
-    // Getters
-    public BigInteger getUserId() {
-        return (userId);
-    }
-
+    // Getters and setters
     public String getEmail() {
         return email;
-    }
-
-    public String getParkingDeckBooked() {
-        return parkingDeckBooked;
-    }
-
-    public Date getBookTime() {
-        return bookTime;
-    }
-
-    public String getLicensePlateNumber() {
-        return licensePlateNumber;
-    }
-
-    // Setters
-    public void setUserId(BigInteger userId) {
-        this.userId = userId;
     }
 
     public void setEmail(String email) {
         this.email = email;
     }
 
+    public String getParkingDeckBooked() {
+        return parkingDeckBooked;
+    }
+
     public void setParkingDeckBooked(String parkingDeckBooked) {
         this.parkingDeckBooked = parkingDeckBooked;
     }
 
+    public Date getBookTime() {
+        return bookTime;
+    }
+
     public void setBookTime(Date bookTime) {
         this.bookTime = bookTime;
+    }
+
+    public String getLicensePlateNumber() {
+        return licensePlateNumber;
     }
 
     public void setLicensePlateNumber(String licensePlateNumber) {
