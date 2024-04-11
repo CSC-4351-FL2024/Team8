@@ -2,6 +2,8 @@
   background-image: url("../../assets/image1.jpeg");
   background-size: cover;
   background-repeat: no-repeat;
+  min-height: 100vh;
+  width: 100vw; 
 }
 
 .container {
