@@ -3,9 +3,7 @@ package com.example.ParkMEHandler.controller;
 import com.example.ParkMEHandler.User;
 import com.example.ParkMEHandler.service.UserService;
 import jakarta.persistence.EntityNotFoundException;
-
 import java.math.BigInteger;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -31,48 +29,47 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body(newUser);
     }
 
-    @GetMapping("/{userId}")
-    public ResponseEntity<User> getUserById(@PathVariable BigInteger userId) {
-        System.out.println("running");
+    // Get a single user by ID
+    @GetMapping("/{userid}")
+    public ResponseEntity<User> getUserById(@PathVariable BigInteger userid) {
         try {
-            User user = userService.getUserById(userId);
+            User user = userService.getUserById(userid);
             return ResponseEntity.ok(user);
         } catch (EntityNotFoundException e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found with id: " + userId, e);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found with id: " + userid, e);
         }
     }
 
-    // Get a single user by ID
-
     // Update a user
-    @PutMapping("/{userId}")
-    public ResponseEntity<User> updateUser(@PathVariable BigInteger userId, @RequestBody User userDetails) {
+    @PutMapping("/{userid}")
+    public ResponseEntity<User> updateUser(@PathVariable BigInteger userid, @RequestBody User userDetails) {
         try {
-            User updatedUser = userService.updateUser(userId, userDetails);
+            User updatedUser = userService.updateUser(userid, userDetails);
             return ResponseEntity.ok(updatedUser);
         } catch (EntityNotFoundException e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found with id: " + userId, e);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found with id: " + userid, e);
         }
     }
 
     // Delete a user
-    @DeleteMapping("/{userId}")
-    public ResponseEntity<Void> deleteUser(@PathVariable BigInteger userId) {
+    @DeleteMapping("/{userid}")
+    public ResponseEntity<Void> deleteUser(@PathVariable BigInteger userid) {
         try {
-            userService.deleteUser(userId);
+            userService.deleteUser(userid);
             return ResponseEntity.noContent().build();
         } catch (EntityNotFoundException e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found with id: " + userId, e);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found with id: " + userid, e);
         }
     }
 
-    @PutMapping("/{userId}/reserve")
-    public ResponseEntity<User> reserveParkingDeck(@PathVariable BigInteger userId, @RequestBody String parkingDeck) {
+    @PutMapping("/{userid}/reserve")
+    public ResponseEntity<User> reserveParkingDeck(@PathVariable BigInteger userid,
+            @RequestBody String parkingDeckBooked) {
         try {
-            User user = userService.reserveParkingDeck(userId, parkingDeck);
+            User user = userService.reserveParkingDeck(userid, parkingDeckBooked);
             return ResponseEntity.ok(user);
         } catch (EntityNotFoundException e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found with id: " + userId, e);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found with id: " + userid, e);
         }
     }
 }

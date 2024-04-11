@@ -1,5 +1,6 @@
 package com.example.ParkMEHandler.service;
 
+import java.util.Date;
 import com.example.ParkMEHandler.User;
 import com.example.ParkMEHandler.Repo.UserRepository;
 import jakarta.persistence.EntityExistsException;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigInteger;
+import java.sql.Timestamp;
 import java.util.List;
 
 @Service
@@ -73,6 +75,8 @@ public class UserService {
         User existingUser = getUserById(userId);
 
         existingUser.setParkingDeckBooked(parkingDeckBooked);
+        Date bookTime = new Date();
+        existingUser.setBookTime(bookTime);
         return userRepository.save(existingUser);
     }
 }

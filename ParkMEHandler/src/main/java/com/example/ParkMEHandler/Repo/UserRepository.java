@@ -12,9 +12,9 @@ import org.springframework.stereotype.Repository;
 public interface UserRepository extends JpaRepository<User, BigInteger> {
     Optional<User> findByEmail(String email);
 
-    List<User> findByParkingDeckBooked(String parkingDeckBooked);
+    List<User> findByParkingDeckBooked(String parkingdeckbooked);
 
-    List<User> findByLicensePlateNumber(String licensePlateNumber);
+    List<User> findByLicensePlateNumber(String licenseplatenumber);
 
-    Optional<User> findByEmailAndLicensePlateNumber(String email, String licensePlateNumber);
+    Optional<User> findByEmailAndLicensePlateNumber(String email, String licenseplatenumber);
 }

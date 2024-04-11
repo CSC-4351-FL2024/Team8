@@ -81,7 +81,14 @@ export class HeaderComponent implements OnInit {
     // console.log(this.username)
     this.userService.getUserById(Id).subscribe({
       next: (response) => {
-        console.log(response);
+        const updatedUser: User = {
+          email: response.email,
+          userId: response.userId,
+          bookTime: response.bookTime,
+          parkingDeckBooked: response.licensePlateNumber,
+          licensePlateNumber: response.licensePlateNumber,
+        };
+        this.userDataService.updateUser(updatedUser);
         // Handle successful user creation (e.g., redirecting, displaying a success message)
       },
       error: () => {
@@ -91,6 +98,7 @@ export class HeaderComponent implements OnInit {
         };
         this.userDataService.updateUser(updatedUser);
         this.router.navigate(['src/app/settings']);
+        console.log(this.user);
       },
     });
   }

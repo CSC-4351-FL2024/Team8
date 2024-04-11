@@ -1,7 +1,7 @@
 export interface User {
   userId: Number;
-  email: string;
-  parkingDeckBooked?: string;
-  bookTime?: string; // Use appropriate type or format as string
-  licensePlateNumber?: string;
+  email: String;
+  parkingDeckBooked?: String;
+  bookTime?: String; // Use appropriate type or format as string
+  licensePlateNumber?: String;
 }

@@ -19,7 +19,12 @@
       </div>
       <div class="spots">
         <p>T DECK</p>
-        <button (click)="reserveButtonClicked('T')">Reserve</button>
+        <button
+          *ngIf="!user.parkingDeckBooked!"
+          (click)="reserveButtonClicked('T')"
+        >
+          Reserve
+        </button>
       </div>
     </div>
     <div class="deck">
@@ -28,7 +33,12 @@
       </div>
       <div class="spots">
         <p>M DECK</p>
-        <button (click)="reserveButtonClicked('M')">Reserve</button>
+        <button
+          *ngIf="!user.parkingDeckBooked!"
+          (click)="reserveButtonClicked('M')"
+        >
+          Reserve
+        </button>
       </div>
     </div>
     <div class="deck">
@@ -37,7 +47,12 @@
       </div>
       <div class="spots">
         <p>N DECK</p>
-        <button (click)="reserveButtonClicked('N')">Reserve</button>
+        <button
+          *ngIf="!user.parkingDeckBooked!"
+          (click)="reserveButtonClicked('N')"
+        >
+          Reserve
+        </button>
       </div>
     </div>
     <div class="deck">
@@ -46,7 +61,12 @@
       </div>
       <div class="spots">
         <p>S DECK</p>
-        <button (click)="reserveButtonClicked('S')">Reserve</button>
+        <button
+          *ngIf="!user.parkingDeckBooked!"
+          (click)="reserveButtonClicked('S')"
+        >
+          Reserve
+        </button>
       </div>
     </div>
     <div class="deck">
@@ -55,7 +75,12 @@
       </div>
       <div class="spots">
         <p>BLUE LOT</p>
-        <button (click)="reserveButtonClicked('B')">Reserve</button>
+        <button
+          *ngIf="!user.parkingDeckBooked!"
+          (click)="reserveButtonClicked('B')"
+        >
+          Reserve
+        </button>
       </div>
     </div>
     <div class="deck">
@@ -64,7 +89,12 @@
       </div>
       <div class="spots">
         <p>GREEN LOT</p>
-        <button (click)="reserveButtonClicked('G')">Reserve</button>
+        <button
+          *ngIf="!user.parkingDeckBooked!"
+          (click)="reserveButtonClicked('G')"
+        >
+          Reserve
+        </button>
       </div>
     </div>
   </div>

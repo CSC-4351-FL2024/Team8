@@ -5,12 +5,13 @@ import { UserService } from '../services/user-service.service';
 import { UserDataService } from '../services/user-data.service';
 import { User } from '../users';
 import { response } from 'express';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 @Component({
   selector: 'app-home',
   standalone: true,
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
-  imports: [],
+  imports: [CommonModule, NgOptimizedImage],
 })
 @Injectable({
   providedIn: 'root',

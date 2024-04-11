@@ -1,49 +1,48 @@
-body{
-    background-image: url("../../assets/image1.jpeg") ;
-    background-size: cover;
-    background-repeat: no-repeat;
+.background {
+  background-image: url("../../assets/image1.jpeg");
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
-.container{
-    background-color: rgba(255, 255, 255, 1);
-    width: 260px;
-    position: absolute;
-    bottom: 50%;
-    left: 50%;
-    transform: translate(-50%, 50%);
-    border-radius: 15px;
-    box-shadow: 13px 13px 0px black;
+.container {
+  background-color: rgba(255, 255, 255, 1);
+  width: 260px;
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  border-radius: 15px;
+  box-shadow: 13px 13px 0px black;
 }
 
-.account{
-    font-weight: normal;
+.account {
+  font-weight: normal;
 }
 
-.verticalCenter{
-    text-align: center;
-    padding: 30px;
+.verticalCenter {
+  text-align: center;
+  padding: 30px;
 }
 
-label{
-    font-weight: bold;
+label {
+  font-weight: bold;
 }
-#formInput{
-    border: none;
-    background-color: #a9abad ;
-    border-radius: 6px;
-    height: 24px;
-    width: 150px;
+#formInput {
+  border: none;
+  background-color: #a9abad;
+  border-radius: 6px;
+  height: 24px;
+  width: 150px;
+}
 
+#submit {
+  height: 30px;
+  border: none;
+  background-color: rgba(31, 100, 248, 0.736);
+  border-radius: 6px;
 }
-
-#submit{
-    height: 30px;
-    border: none;
-    background-color: rgba(31, 100, 248, 0.736);
-    border-radius: 6px;
-}
-#submit:hover{
-    cursor: pointer;
+#submit:hover {
+  cursor: pointer;
 }
 input:disabled {
   color: black;
@@ -54,5 +53,5 @@ select:disabled {
 }
 
 .mat-select-disabled .mat-select-value {
-     color: black;
-   }
+  color: black;
+}

@@ -7,7 +7,8 @@ import { HeaderComponent } from '../header/header.component';
 import { UserDataService } from '../services/user-data.service';
 import { User } from '../users';
 import { UserService } from '../services/user-service.service';
-
+import { routes } from '../app.routes';
+import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root',
 })
@@ -26,6 +27,7 @@ export class SettingsComponent implements OnInit {
   constructor(
     private userDataService: UserDataService,
     private userService: UserService,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -37,11 +39,9 @@ export class SettingsComponent implements OnInit {
     const updatedUser: User = {
       email: this.user?.email!,
       userId: this.user?.userId!,
-      licensePlateNumber: this.licensePlate.value!,
+      licensePlateNumber: this.licensePlate.value!.toUpperCase(),
     };
     this.userDataService.updateUser(updatedUser);
-    console.log(this.licensePlate.value);
-    console.log(this.user?.licensePlateNumber);
     this.userService.createUser(this.user!).subscribe({
       next: (user) => {
         console.log('User created successfully', user);
@@ -56,6 +56,7 @@ export class SettingsComponent implements OnInit {
     this.userService.updateUser(this.user!).subscribe({
       next: (user) => {
         console.log('User created successfully', user);
+        this.router.navigate(['/']);
       },
       error: (error) => {
         console.log('skill issue i guess', error);

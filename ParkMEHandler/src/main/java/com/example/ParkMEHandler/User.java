@@ -3,31 +3,37 @@ package com.example.ParkMEHandler;
 import jakarta.persistence.*;
 
 import java.math.BigInteger;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
-@Table(name = "users")
+@Table(name = "users", schema = "parkmeschema")
 public class User {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "userid")
     private BigInteger userId;
 
-    @Column(nullable = false, unique = true)
+    @Column(name = "email")
     private String email;
 
+    @Column(name = "licenseplatenumber")
+    private String licensePlateNumber;
+
+    @Column(name = "parkingdeckbooked")
     private String parkingDeckBooked;
 
-    @Column(columnDefinition = "TIMESTAMP WITH TIME ZONE")
-    private LocalDateTime bookTime;
+    @Column(name = "booktime")
+    private Date bookTime;
 
-    private String licensePlateNumber;
+    // Constructors, getters, and setters
 
     // Constructors
     public User() {
     }
 
-    public User(BigInteger userId, String email, String parkingDeckBooked, LocalDateTime bookTime, String licensePlateNumber) {
-        this.userId=userId;
+    public User(BigInteger userId, String email, String parkingDeckBooked, Date bookTime,
+            String licensePlateNumber) {
+        this.userId = userId;
         this.email = email;
         this.parkingDeckBooked = parkingDeckBooked;
         this.bookTime = bookTime;
@@ -47,7 +53,7 @@ public class User {
         return parkingDeckBooked;
     }
 
-    public LocalDateTime getBookTime() {
+    public Date getBookTime() {
         return bookTime;
     }
 
@@ -68,7 +74,7 @@ public class User {
         this.parkingDeckBooked = parkingDeckBooked;
     }
 
-    public void setBookTime(LocalDateTime bookTime) {
+    public void setBookTime(Date bookTime) {
         this.bookTime = bookTime;
     }
 
@@ -76,4 +82,3 @@ public class User {
         this.licensePlateNumber = licensePlateNumber;
     }
 }
-
