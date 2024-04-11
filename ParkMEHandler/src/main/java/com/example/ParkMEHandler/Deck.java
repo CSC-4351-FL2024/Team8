@@ -2,11 +2,9 @@ package com.example.ParkMEHandler;
 
 import jakarta.persistence.*;
 
-import java.util.Date;
-
 @Entity
 @Table(name = "decks", schema = "parkmeschema")
-public class User {
+public class Deck {
 
     @Id
     @Column(name = "m", nullable = false)
@@ -42,6 +40,7 @@ public class User {
     public String getMDeck() {
         return mDeck;
     }
+
     public void setMDeck(String mDeck) {
         this.mDeck = mDeck;
     }
@@ -49,6 +48,7 @@ public class User {
     public String getTDeck() {
         return tDeck;
     }
+
     public void setTDeck(String tDeck) {
         this.tDeck = tDeck;
     }
@@ -56,6 +56,7 @@ public class User {
     public String getNDeck() {
         return nDeck;
     }
+
     public void setNDeck(String nDeck) {
         this.nDeck = nDeck;
     }
@@ -63,6 +64,7 @@ public class User {
     public String getSDeck() {
         return sDeck;
     }
+
     public void setSDeck(String sDeck) {
         this.sDeck = sDeck;
     }
@@ -70,6 +72,7 @@ public class User {
     public String getBDeck() {
         return bDeck;
     }
+
     public void setBDeck(String bDeck) {
         this.bDeck = bDeck;
     }
@@ -77,6 +80,8 @@ public class User {
     public String getGDeck() {
         return gDeck;
     }
+
     public void setGDeck(String gDeck) {
         this.gDeck = gDeck;
     }
+}
