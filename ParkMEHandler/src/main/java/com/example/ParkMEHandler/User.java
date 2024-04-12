@@ -67,4 +67,5 @@ public class User {
     public void setLicensePlateNumber(String licensePlateNumber) {
         this.licensePlateNumber = licensePlateNumber;
     }
+
 }

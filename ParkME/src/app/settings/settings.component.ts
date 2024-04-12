@@ -41,8 +41,16 @@ export class SettingsComponent implements OnInit {
     };
     this.userDataService.updateUser(updatedUser);
     this.userService.createUser(this.user!).subscribe({
-      next: (user) => {
-        console.log('User created successfully', user);
+      next: (response: any) => {
+        const updatedUser: User = {
+          email: response.user.email,
+          bookTime: response.user.bookTime,
+          parkingDeckBooked: response.user.parkingDeckBooked,
+          licensePlateNumber: response.user.licensePlateNumber,
+          Deckspots: response.Deckspots,
+        };
+
+        this.userDataService.updateUser(updatedUser);
         this.router.navigate(['src/app/home']);
         // Handle successful user creation (e.g., redirecting, displaying a success message)
       },
@@ -53,8 +61,16 @@ export class SettingsComponent implements OnInit {
   }
   updateUser() {
     this.userService.updateUser(this.user!).subscribe({
-      next: (user) => {
-        console.log('User created successfully', user);
+      next: (response: any) => {
+        const updatedUser: User = {
+          email: response.user.email,
+          bookTime: response.user.bookTime,
+          parkingDeckBooked: response.user.parkingDeckBooked,
+          licensePlateNumber: response.user.licensePlateNumber,
+          Deckspots: response.Deckspots,
+        };
+
+        this.userDataService.updateUser(updatedUser);
       },
       error: (error) => {
         console.log('skill issue i guess', error);

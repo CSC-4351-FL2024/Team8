@@ -4,13 +4,13 @@ import com.example.ParkMEHandler.Deck;
 import com.example.ParkMEHandler.Repo.DeckRepository;
 
 import org.springframework.transaction.annotation.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class DeckService {
     private final DeckRepository deckRepository;
+    private final int Maxspots = 15;
 
     @Autowired
     public DeckService(DeckRepository deckRepository) {
@@ -22,6 +22,7 @@ public class DeckService {
     }
 
     public long getCountTDeck() {
+        System.out.println(deckRepository.countByTDeck());
         return deckRepository.countByTDeck();
     }
 
@@ -39,47 +40,48 @@ public class DeckService {
 
     public long getCountGDeck() {
         return deckRepository.countByGDeck();
+
     }
 
     public long[] getCountOfEachDeck() {
-        long[] counts = new long[6];
-        counts[0] = deckRepository.countByMDeck();
-        counts[1] = deckRepository.countByTDeck();
-        counts[2] = deckRepository.countByNDeck();
-        counts[3] = deckRepository.countBySDeck();
-        counts[4] = deckRepository.countByBDeck();
-        counts[5] = deckRepository.countByGDeck();
-
-        return counts;
+        return new long[] {
+                getCountMDeck(),
+                getCountTDeck(),
+                getCountNDeck(),
+                getCountSDeck(),
+                getCountBDeck(),
+                getCountGDeck()
+        };
     }
 
     @Transactional
-    public boolean checkAndInsertEmail(String column, String email, long threshold) {
+    public long[] checkAndInsertEmail(String column, String email) {
+        long[] totalAtEachDeck = getCountOfEachDeck();
         long count = 0;
         switch (column.toLowerCase()) {
             case "m":
-                count = deckRepository.countByMDeck();
+                count = totalAtEachDeck[0];
                 break;
             case "t":
-                count = deckRepository.countByTDeck();
+                count = totalAtEachDeck[1];
                 break;
             case "n":
-                count = deckRepository.countByNDeck();
+                count = totalAtEachDeck[2];
                 break;
             case "s":
-                count = deckRepository.countBySDeck();
+                count = totalAtEachDeck[3];
                 break;
             case "b":
-                count = deckRepository.countByBDeck();
+                count = totalAtEachDeck[4];
                 break;
             case "g":
-                count = deckRepository.countByGDeck();
+                count = totalAtEachDeck[5];
                 break;
             default:
-                return false; // Column name is not valid
+                throw new IllegalArgumentException("Invalid column name: " + column);
         }
 
-        if (count < threshold) {
+        if (count < Maxspots) {
             Deck newDeck = new Deck();
             switch (column.toLowerCase()) {
                 case "m":
@@ -100,10 +102,12 @@ public class DeckService {
                 case "g":
                     newDeck.setGDeck(email);
                     break;
+                default:
+                    throw new IllegalArgumentException("Invalid column name: " + column);
             }
             deckRepository.save(newDeck);
-            return true; // Successfully inserted
+            totalAtEachDeck = getCountOfEachDeck();
         }
-        return false; // Count is not below threshold or column was invalid
+        return totalAtEachDeck;
     }
 }

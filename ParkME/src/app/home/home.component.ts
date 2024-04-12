@@ -17,67 +17,84 @@ import { CommonModule, NgOptimizedImage } from '@angular/common';
   providedIn: 'root',
 })
 export class HomeComponent implements OnInit {
+  map: any;
   user: User | null = null;
-
+  DeckMspot: number = 15;
+  DeckTspot: number = 15;
+  DeckNspot: number = 15;
+  DeckGspot: number = 15;
+  DeckBspot: number = 15;
+  DeckSspot: number = 15;
   constructor(
     private snackBar: MatSnackBar,
     private userService: UserService,
     private userDataService: UserDataService,
   ) {}
-
+  setSpots() {
+    if (this.user?.Deckspots?.length == 6) {
+      this.DeckMspot = this.DeckMspot! - this.user?.Deckspots[0]!;
+      this.DeckTspot = this.DeckTspot! - this.user?.Deckspots[1]!;
+      this.DeckNspot = this.DeckNspot! - this.user?.Deckspots[2]!;
+      this.DeckSspot = this.DeckSspot! - this.user?.Deckspots[3]!;
+      this.DeckBspot = this.DeckBspot! - this.user?.Deckspots[4]!;
+      this.DeckGspot = this.DeckGspot! - this.user?.Deckspots[5]!;
+      this.setMarker();
+    }
+  }
   ngOnInit(): void {
     this.initMap();
-    this.userDataService.currentUser.subscribe((user) => (this.user = user));
+    this.userDataService.currentUser.subscribe((user) => {
+      this.user = user;
+      this.setSpots(); // Ensure setSpots is called after the user is set
+    });
   }
 
   async initMap() {
     const { Map } = await google.maps.importLibrary('maps');
-
-    const map = new Map(document.getElementById('map')!, {
+    this.map = new Map(document.getElementById('map')!, {
       center: { lat: 33.747893689359636, lng: -84.38741045065618 },
       zoom: 15.4,
       mapId: '4504f8b37365c3d0',
     });
-
-    const INITIAL_AVAILABLE_SPOTS = 15;
-
+  }
+  setMarker() {
     const markers = [
       {
         position: { lat: 33.75557670762253, lng: -84.38698213132827 },
         name: 'T Deck',
-        spots: INITIAL_AVAILABLE_SPOTS,
+        spots: this.DeckTspot,
       },
       {
         position: { lat: 33.75334683794284, lng: -84.38414303503839 },
         name: 'M Deck',
-        spots: INITIAL_AVAILABLE_SPOTS,
+        spots: this.DeckMspot,
       },
       {
         position: { lat: 33.751414302259235, lng: -84.38442667367643 },
         name: 'N Deck',
-        spots: INITIAL_AVAILABLE_SPOTS,
+        spots: this.DeckNspot,
       },
       {
         position: { lat: 33.7517392377102, lng: -84.38351822583688 },
         name: 'S Deck',
-        spots: INITIAL_AVAILABLE_SPOTS,
+        spots: this.DeckSspot,
       },
       {
         position: { lat: 33.741606751431206, lng: -84.3902396173013 },
         name: 'Blue Lot',
-        spots: INITIAL_AVAILABLE_SPOTS,
+        spots: this.DeckBspot,
       },
       {
         position: { lat: 33.73920445683548, lng: -84.39107924418565 },
         name: 'Green Lot',
-        spots: INITIAL_AVAILABLE_SPOTS,
+        spots: this.DeckGspot,
       },
     ];
 
     markers.forEach((marker, i) => {
       const newMarker = new google.maps.Marker({
         position: marker.position,
-        map: map,
+        map: this.map,
         title: `${i + 1}. ${marker.name}`,
         label: `${marker.spots} ${marker.name}`,
         icon: {
@@ -93,7 +110,7 @@ export class HomeComponent implements OnInit {
       });
 
       newMarker.addListener('click', () => {
-        infoWindow.open(map, newMarker);
+        infoWindow.open(this.map, newMarker);
       });
     });
   }
@@ -101,19 +118,20 @@ export class HomeComponent implements OnInit {
   reserveButtonClicked(deck: string): void {
     console.log(this.user);
     this.userService.reserveParkingDeck(this.user!, deck).subscribe({
-      next: (response) => {
-        console.log(response);
-        //        const updatedUser: User = {
-        //        email: this.user?.email!,
-        //      userId: this.user?.userId!,
-        //    licensePlateNumber: this.user?.licensePlateNumber!,
-        //    parkingDeckBooked: deck,
-        // };
-        // this.userDataService.updateUser(updatedUser);
-        // Handle success, maybe show a success message
+      next: (response: any) => {
+        const updatedUser: User = {
+          email: response.user.email,
+          bookTime: response.user.bookTime,
+          parkingDeckBooked: response.user.parkingDeckBooked,
+          licensePlateNumber: response.user.licensePlateNumber,
+          Deckspots: response.Deckspots,
+        };
+
+        this.userDataService.updateUser(updatedUser);
+        this.setSpots();
       },
       error: (error) => {
-        console.error('Reservation failed', error);
+        console.error('Deck full', error);
         // Handle error, maybe show an error message
       },
     });

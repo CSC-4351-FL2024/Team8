@@ -7,7 +7,12 @@ import jakarta.persistence.*;
 public class Deck {
 
     @Id
-    @Column(name = "m", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Suitable for databases with auto-increment feature, like
+                                                        // PostgreSQL's BIGSERIAL
+    @Column(name = "id", nullable = false)
+    private Long id; // Primary key
+
+    @Column(name = "m")
     private String mDeck;
 
     @Column(name = "t")
@@ -28,6 +33,7 @@ public class Deck {
     public Deck() {
     }
 
+    // Constructors
     public Deck(String mDeck, String tDeck, String nDeck, String sDeck, String bDeck, String gDeck) {
         this.mDeck = mDeck;
         this.tDeck = tDeck;
@@ -37,6 +43,16 @@ public class Deck {
         this.gDeck = gDeck;
     }
 
+    // Getter and setter for id
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    // Existing getters and setters
     public String getMDeck() {
         return mDeck;
     }
@@ -85,3 +101,4 @@ public class Deck {
         this.gDeck = gDeck;
     }
 }
+

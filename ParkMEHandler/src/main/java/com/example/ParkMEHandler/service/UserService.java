@@ -74,4 +74,3 @@ public class UserService {
         return userRepository.save(existingUser);
     }
 }
-

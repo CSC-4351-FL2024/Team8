@@ -3,5 +3,5 @@ export interface User {
   parkingDeckBooked?: String;
   bookTime?: String; // Use appropriate type or format as string
   licensePlateNumber?: String;
-  Deckspots?:[];
+  Deckspots?: Array<number>;
 }

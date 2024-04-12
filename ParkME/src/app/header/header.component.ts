@@ -10,10 +10,10 @@ import {
 import { MatMenu, MatMenuItem, MatMenuTrigger } from '@angular/material/menu';
 declare var google: any;
 import { Buffer } from 'buffer';
-import { User } from '../users';
 import { UserDataService } from '../services/user-data.service';
 import { UserService } from '../services/data-service.service';
 import { Router } from '@angular/router';
+import { User } from '../users';
 @Component({
   selector: 'app-header',
   standalone: true,
@@ -80,12 +80,13 @@ export class HeaderComponent implements OnInit {
     this.username = JSON.parse(sessionStorage.getItem('loggedInUser')!).name;
     // console.log(this.username)
     this.userService.getUserById(this.email).subscribe({
-      next: (response) => {
+      next: (response: any) => {
         const updatedUser: User = {
-          email: response.email,
-          bookTime: response.bookTime,
-          parkingDeckBooked: response.parkingDeckBooked,
-          licensePlateNumber: response.licensePlateNumber,
+          email: response.user.email,
+          bookTime: response.user.bookTime,
+          parkingDeckBooked: response.user.parkingDeckBooked,
+          licensePlateNumber: response.user.licensePlateNumber,
+          Deckspots: response.deckSpots,
         };
 
         this.userDataService.updateUser(updatedUser);

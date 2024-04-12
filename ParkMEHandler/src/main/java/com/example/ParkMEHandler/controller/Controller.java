@@ -1,5 +1,7 @@
 package com.example.ParkMEHandler.controller;
 
+import com.example.ParkMEHandler.service.DeckService;
+import com.example.ParkMEHandler.ResponseBuilder;
 import com.example.ParkMEHandler.User;
 import com.example.ParkMEHandler.service.UserService;
 import jakarta.persistence.EntityNotFoundException;
@@ -12,28 +14,34 @@ import org.springframework.http.HttpStatus;
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/users")
-public class UserController {
-
+public class Controller {
+    private final DeckService deckService;
     private final UserService userService;
 
     @Autowired
-    public UserController(UserService userService) {
+    public Controller(UserService userService, DeckService deckService) {
         this.userService = userService;
+        this.deckService = deckService;
     }
 
     // Create a new user
     @PostMapping("/")
-    public ResponseEntity<User> createUser(@RequestBody User user) {
+    public ResponseEntity<ResponseBuilder> createUser(@RequestBody User user) {
         User newUser = userService.createUser(user);
-        return ResponseEntity.status(HttpStatus.CREATED).body(newUser);
+
+        ResponseBuilder response = new ResponseBuilder(newUser, deckService.getCountOfEachDeck());
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     // Get a single user by email
     @GetMapping("/{email}")
-    public ResponseEntity<User> getUserByEmail(@PathVariable String email) {
+    public ResponseEntity<ResponseBuilder> getUserByEmail(@PathVariable String email) {
         try {
             User user = userService.getUserByEmail(email);
-            return ResponseEntity.ok(user);
+
+            ResponseBuilder response = new ResponseBuilder(user, deckService.getCountOfEachDeck());
+
+            return ResponseEntity.ok(response);
         } catch (EntityNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found with email: " + email, e);
         }
@@ -41,10 +49,11 @@ public class UserController {
 
     // Update a user by email
     @PutMapping("/{email}")
-    public ResponseEntity<User> updateUser(@PathVariable String email, @RequestBody User userDetails) {
+    public ResponseEntity<ResponseBuilder> updateUser(@PathVariable String email, @RequestBody User userDetails) {
         try {
             User updatedUser = userService.updateUser(email, userDetails);
-            return ResponseEntity.ok(updatedUser);
+            ResponseBuilder response = new ResponseBuilder(updatedUser, deckService.getCountOfEachDeck());
+            return ResponseEntity.ok(response);
         } catch (EntityNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found with email: " + email, e);
         }
@@ -63,14 +72,15 @@ public class UserController {
 
     // Reserve a parking deck for a user identified by email
     @PutMapping("/{email}/reserve")
-    public ResponseEntity<User> reserveParkingDeck(@PathVariable String email,
+    public ResponseEntity<ResponseBuilder> reserveParkingDeck(@PathVariable String email,
             @RequestBody String parkingDeckBooked) {
         try {
             User user = userService.reserveParkingDeck(email, parkingDeckBooked);
-            return ResponseEntity.ok(user);
+            ResponseBuilder response = new ResponseBuilder(user,
+                    deckService.checkAndInsertEmail(parkingDeckBooked, user.getEmail()));
+            return ResponseEntity.ok(response);
         } catch (EntityNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found with email: " + email, e);
         }
     }
 }
-
