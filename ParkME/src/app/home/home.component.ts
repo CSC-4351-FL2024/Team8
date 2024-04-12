@@ -6,12 +6,14 @@ import { UserDataService } from '../services/user-data.service';
 import { User } from '../users';
 import { response } from 'express';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { GoogleSigninButtonModule } from '@abacritt/angularx-social-login';
+
 @Component({
   selector: 'app-home',
   standalone: true,
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
-  imports: [CommonModule, NgOptimizedImage],
+  imports: [CommonModule, NgOptimizedImage,GoogleSigninButtonModule],
 })
 @Injectable({
   providedIn: 'root',

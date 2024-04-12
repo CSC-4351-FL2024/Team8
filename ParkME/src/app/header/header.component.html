@@ -2,22 +2,18 @@
   <button mat-button class="logoInputs" routerLink='/src/app/home'>
     <img src="../../assets/newLogo.png" alt="ParkMelogo">
   </button>
+
   <div class="Inputs">
-
-<div *ngIf="!LoggedIn" class="googleSign Inputs" >
-    <asl-google-signin-button  type="standard" size='large' >
-    </asl-google-signin-button>
+    <div *ngIf="!LoggedIn" class="googleSign Inputs" >
+      <asl-google-signin-button  type="standard" size='large'></asl-google-signin-button>
     </div>
-<div *ngIf="LoggedIn">
-
-  <button mat-button [matMenuTriggerFor]="menu"><img [src]="userProfilePicture"  alt="Avatar"></button>
-  <mat-menu #menu="matMenu" class="menuButton" [overlapTrigger]="false" >
-
-    <button  mat-menu-item routerLink='src/app/settings'>Setting</button>
-    <button mat-menu-item (click)="signOut()">Sign out</button>
-
-  </mat-menu>
-
+    
+    <div *ngIf="LoggedIn">
+      <button mat-button [matMenuTriggerFor]="menu"><img [src]="userProfilePicture" alt="Avatar"></button>
+      <mat-menu #menu="matMenu" class="menuButton" [overlapTrigger]="false" >
+        <button  mat-menu-item routerLink='src/app/settings'>Setting</button>
+        <button mat-menu-item (click)="signOut()">Sign out</button>
+      </mat-menu>
+    </div>
+  </div>
 </div>
-  </div>
-  </div>
