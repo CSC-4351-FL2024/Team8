@@ -1,12 +1,12 @@
 package com.example.ParkMEHandler.Repo;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import com.example.ParkMEHandler.Deck;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface DeckRepository extends CrudRepository<Deck, String> {
+public interface DeckRepository extends JpaRepository<Deck, String> {
     // Custom queries to count non-null rows for each column
     @Query("SELECT COUNT(d.mDeck) FROM Deck d")
     long countByMDeck();
