@@ -73,4 +73,11 @@ public class UserService {
         existingUser.setBookTime(bookTime);
         return userRepository.save(existingUser);
     }
+
+    public User checkoutParkingDeck(String email, String parkingDeckBooked) {
+        User existingUser = getUserByEmail(email);
+        existingUser.setParkingDeckBooked(null);
+        existingUser.setBookTime(null);
+        return userRepository.save(existingUser);
+    }
 }

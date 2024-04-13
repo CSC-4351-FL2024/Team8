@@ -20,8 +20,11 @@
       <div class="spots">
         <p>T DECK</p>
         <!--if user hasnt login, show login button-->
-        <div *ngIf="!user" class="googleSign Inputs" >
-          <asl-google-signin-button  type="standard" size='large'></asl-google-signin-button>
+        <div *ngIf="!user" class="googleSign Inputs">
+          <asl-google-signin-button
+            type="standard"
+            size="large"
+          ></asl-google-signin-button>
         </div>
         <!--if user hasnt booked spot, show reserve button-->
         <button
@@ -32,7 +35,7 @@
         </button>
         <!--if user  booked spot, show checkout button-->
         <button
-          *ngIf="user?.parkingDeckBooked && user?.Deckspots?.include('t')"
+          *ngIf="user?.Deckspots?=='t'"
           (click)="reserveButtonClicked('t')"
         >
           Check Out
@@ -46,8 +49,11 @@
       <div class="spots">
         <p>M DECK</p>
         <!--if user hasnt login, show login button-->
-        <div *ngIf="!user" class="googleSign Inputs" >
-          <asl-google-signin-button  type="standard" size='large'></asl-google-signin-button>
+        <div *ngIf="!user" class="googleSign Inputs">
+          <asl-google-signin-button
+            type="standard"
+            size="large"
+          ></asl-google-signin-button>
         </div>
         <!--if user hasnt booked spot, show reserve button-->
         <button
@@ -65,8 +71,11 @@
       <div class="spots">
         <p>N DECK</p>
         <!--if user hasnt login, show login button-->
-        <div *ngIf="!user" class="googleSign Inputs" >
-          <asl-google-signin-button  type="standard" size='large'></asl-google-signin-button>
+        <div *ngIf="!user" class="googleSign Inputs">
+          <asl-google-signin-button
+            type="standard"
+            size="large"
+          ></asl-google-signin-button>
         </div>
         <!--if user hasnt booked spot, show reserve button-->
         <button
@@ -84,8 +93,11 @@
       <div class="spots">
         <p>S DECK</p>
         <!--if user hasnt login, show login button-->
-        <div *ngIf="!user" class="googleSign Inputs" >
-          <asl-google-signin-button  type="standard" size='large'></asl-google-signin-button>
+        <div *ngIf="!user" class="googleSign Inputs">
+          <asl-google-signin-button
+            type="standard"
+            size="large"
+          ></asl-google-signin-button>
         </div>
         <!--if user hasnt booked spot, show reserve button-->
         <button
@@ -103,8 +115,11 @@
       <div class="spots">
         <p>BLUE LOT</p>
         <!--if user hasnt login, show login button-->
-        <div *ngIf="!user" class="googleSign Inputs" >
-          <asl-google-signin-button  type="standard" size='large'></asl-google-signin-button>
+        <div *ngIf="!user" class="googleSign Inputs">
+          <asl-google-signin-button
+            type="standard"
+            size="large"
+          ></asl-google-signin-button>
         </div>
         <!--if user hasnt booked spot, show reserve button-->
         <button
@@ -122,8 +137,11 @@
       <div class="spots">
         <p>GREEN LOT</p>
         <!--if user hasnt login, show login button-->
-        <div *ngIf="!user" class="googleSign Inputs" >
-          <asl-google-signin-button  type="standard" size='large'></asl-google-signin-button>
+        <div *ngIf="!user" class="googleSign Inputs">
+          <asl-google-signin-button
+            type="standard"
+            size="large"
+          ></asl-google-signin-button>
         </div>
         <!--if user hasnt booked spot, show reserve button-->
         <button

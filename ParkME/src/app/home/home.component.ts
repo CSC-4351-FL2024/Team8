@@ -13,7 +13,7 @@ import { GoogleSigninButtonModule } from '@abacritt/angularx-social-login';
   standalone: true,
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
-  imports: [CommonModule, NgOptimizedImage,GoogleSigninButtonModule],
+  imports: [CommonModule, NgOptimizedImage, GoogleSigninButtonModule],
 })
 @Injectable({
   providedIn: 'root',
@@ -116,9 +116,9 @@ export class HomeComponent implements OnInit {
       });
     });
   }
+  checkoutButtonClicked(deck: string): void {}
 
   reserveButtonClicked(deck: string): void {
-    console.log(this.user);
     this.userService.reserveParkingDeck(this.user!, deck).subscribe({
       next: (response: any) => {
         const updatedUser: User = {

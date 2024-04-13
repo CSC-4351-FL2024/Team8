@@ -26,6 +26,13 @@ export class UserService {
   getUserById(userEmail: String): Observable<any> {
     return this.http.get(`${baseUrl}/${userEmail}`);
   }
+
+  checkoutParkingDeck(user: User, parkingDeck: string): Observable<User> {
+    return this.http.put<User>(
+      `${baseUrl}/${user.email}/checkout`,
+      parkingDeck,
+    );
+  }
   //createUser(user: User): Observable<User> {
   // return this.http.post<User>(baseUrl, user); // Removed the trailing slash
   //}

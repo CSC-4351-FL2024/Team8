@@ -83,4 +83,16 @@ public class Controller {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found with email: " + email, e);
         }
     }
+
+    @DeleteMapping("/{email}/checkout")
+    public ResponseEntity<ResponseBuilder> checkoutParkingDeck(@PathVariable String email,
+            @RequestBody String parkingDeckBooked) {
+        try {
+            userService.checkoutParkingDeck(email, parkingDeckBooked);
+            return ResponseEntity.noContent().build();
+        } catch (EntityNotFoundException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found with email: " + email, e);
+        }
+    }
+
 }

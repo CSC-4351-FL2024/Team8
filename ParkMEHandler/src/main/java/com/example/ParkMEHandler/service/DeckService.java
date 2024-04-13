@@ -22,7 +22,6 @@ public class DeckService {
     }
 
     public long getCountTDeck() {
-        System.out.println(deckRepository.countByTDeck());
         return deckRepository.countByTDeck();
     }
 
@@ -105,6 +104,7 @@ public class DeckService {
                 default:
                     throw new IllegalArgumentException("Invalid column name: " + column);
             }
+            newDeck.setEmail(email);
             deckRepository.save(newDeck);
             totalAtEachDeck = getCountOfEachDeck();
         }
