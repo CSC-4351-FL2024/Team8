@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.http.HttpStatus;
 
+
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/users")
@@ -85,11 +86,11 @@ public class Controller {
     }
 
     @DeleteMapping("/{email}/checkout")
-    public ResponseEntity<ResponseBuilder> checkoutParkingDeck(@PathVariable String email,
-            @RequestBody String parkingDeckBooked) {
+    public ResponseEntity<ResponseBuilder> checkoutParkingDeck(@PathVariable String email) {
         try {
-            userService.checkoutParkingDeck(email, parkingDeckBooked);
-            return ResponseEntity.noContent().build();
+            User user = userService.checkoutParkingDeck(email);
+            ResponseBuilder response = new ResponseBuilder(user, deckService.checkout(email));
+            return ResponseEntity.ok(response);
         } catch (EntityNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found with email: " + email, e);
         }

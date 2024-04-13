@@ -20,26 +20,27 @@
       <div class="spots">
         <p>T DECK</p>
         <!--if user hasnt login, show login button-->
-        <div *ngIf="!user" class="googleSign Inputs">
-          <asl-google-signin-button
-            type="standard"
-            size="large"
-          ></asl-google-signin-button>
-        </div>
+        <ng-container *ngIf="!user; else loggedInBlock">
+          <div class="googleSign Inputs">
+            <asl-google-signin-button type="standard" size="large"></asl-google-signin-button>
+          </div>
+        </ng-container>
         <!--if user hasnt booked spot, show reserve button-->
-        <button
-          *ngIf="user && !user?.parkingDeckBooked"
-          (click)="reserveButtonClicked('t')"
-        >
-          Reserve
-        </button>
+        <ng-template #loggedInBlock>
+          <ng-container *ngIf="!user?.parkingDeckBooked; else bookedSpotBlock">
+            <button (click)="reserveButtonClicked('t')">
+              Reserve
+            </button>
+          </ng-container>
+        </ng-template>
         <!--if user  booked spot, show checkout button-->
-        <button
-          *ngIf="user?.Deckspots?=='t'"
-          (click)="reserveButtonClicked('t')"
-        >
-          Check Out
-        </button>
+        <ng-template #bookedSpotBlock>
+          <ng-container *ngIf="user?.parkingDeckBooked == 't'">
+            <button (click)="checkoutButtonClicked()">
+              Check Out
+            </button>
+          </ng-container>
+        </ng-template>      
       </div>
     </div>
     <div class="deck">
@@ -48,20 +49,28 @@
       </div>
       <div class="spots">
         <p>M DECK</p>
-        <!--if user hasnt login, show login button-->
-        <div *ngIf="!user" class="googleSign Inputs">
-          <asl-google-signin-button
-            type="standard"
-            size="large"
-          ></asl-google-signin-button>
-        </div>
-        <!--if user hasnt booked spot, show reserve button-->
-        <button
-          *ngIf="user && !user?.parkingDeckBooked"
-          (click)="reserveButtonClicked('m')"
-        >
-          Reserve
-        </button>
+          <!--if user hasnt login, show login button-->
+          <ng-container *ngIf="!user; else loggedInBlock">
+            <div class="googleSign Inputs">
+              <asl-google-signin-button type="standard" size="large"></asl-google-signin-button>
+            </div>
+          </ng-container>
+          <!--if user hasnt booked spot, show reserve button-->
+          <ng-template #loggedInBlock>
+            <ng-container *ngIf="!user?.parkingDeckBooked; else bookedSpotBlock">
+              <button (click)="reserveButtonClicked('m')">
+                Reserve
+              </button>
+            </ng-container>
+          </ng-template>
+          <!--if user  booked spot, show checkout button-->
+          <ng-template #bookedSpotBlock>
+            <ng-container *ngIf="user?.parkingDeckBooked == 'm'">
+              <button (click)="checkoutButtonClicked()">
+                Check Out
+              </button>
+            </ng-container>
+          </ng-template>    
       </div>
     </div>
     <div class="deck">
@@ -70,20 +79,28 @@
       </div>
       <div class="spots">
         <p>N DECK</p>
-        <!--if user hasnt login, show login button-->
-        <div *ngIf="!user" class="googleSign Inputs">
-          <asl-google-signin-button
-            type="standard"
-            size="large"
-          ></asl-google-signin-button>
-        </div>
+          <!--if user hasnt login, show login button-->
+          <ng-container *ngIf="!user; else loggedInBlock">
+            <div class="googleSign Inputs">
+              <asl-google-signin-button type="standard" size="large"></asl-google-signin-button>
+            </div>
+          </ng-container>
         <!--if user hasnt booked spot, show reserve button-->
-        <button
-          *ngIf="user && !user?.parkingDeckBooked"
-          (click)="reserveButtonClicked('n')"
-        >
-          Reserve
-        </button>
+          <ng-template #loggedInBlock>
+            <ng-container *ngIf="!user?.parkingDeckBooked; else bookedSpotBlock">
+              <button (click)="reserveButtonClicked('n')">
+                Reserve
+              </button>
+            </ng-container>
+          </ng-template>
+        <!--if user  booked spot, show checkout button-->
+        <ng-template #bookedSpotBlock>
+          <ng-container *ngIf="user?.parkingDeckBooked == 'n'">
+            <button (click)="checkoutButtonClicked()">
+              Check Out
+            </button>
+          </ng-container>
+        </ng-template>    
       </div>
     </div>
     <div class="deck">
@@ -92,20 +109,28 @@
       </div>
       <div class="spots">
         <p>S DECK</p>
-        <!--if user hasnt login, show login button-->
-        <div *ngIf="!user" class="googleSign Inputs">
-          <asl-google-signin-button
-            type="standard"
-            size="large"
-          ></asl-google-signin-button>
-        </div>
-        <!--if user hasnt booked spot, show reserve button-->
-        <button
-          *ngIf="user && !user?.parkingDeckBooked"
-          (click)="reserveButtonClicked('s')"
-        >
-          Reserve
-        </button>
+          <!--if user hasnt login, show login button-->
+          <ng-container *ngIf="!user; else loggedInBlock">
+            <div class="googleSign Inputs">
+              <asl-google-signin-button type="standard" size="large"></asl-google-signin-button>
+            </div>
+          </ng-container>
+          <!--if user hasnt booked spot, show reserve button-->
+          <ng-template #loggedInBlock>
+            <ng-container *ngIf="!user?.parkingDeckBooked; else bookedSpotBlock">
+              <button (click)="reserveButtonClicked('s')">
+                Reserve
+              </button>
+            </ng-container>
+          </ng-template>
+          <!--if user  booked spot, show checkout button-->
+          <ng-template #bookedSpotBlock>
+            <ng-container *ngIf="user?.parkingDeckBooked == 's'">
+              <button (click)="checkoutButtonClicked()">
+                Check Out
+              </button>
+            </ng-container>
+          </ng-template>    
       </div>
     </div>
     <div class="deck">
@@ -114,20 +139,28 @@
       </div>
       <div class="spots">
         <p>BLUE LOT</p>
-        <!--if user hasnt login, show login button-->
-        <div *ngIf="!user" class="googleSign Inputs">
-          <asl-google-signin-button
-            type="standard"
-            size="large"
-          ></asl-google-signin-button>
-        </div>
-        <!--if user hasnt booked spot, show reserve button-->
-        <button
-          *ngIf="user && !user?.parkingDeckBooked"
-          (click)="reserveButtonClicked('b')"
-        >
-          Reserve
-        </button>
+          <!--if user hasnt login, show login button-->
+          <ng-container *ngIf="!user; else loggedInBlock">
+            <div class="googleSign Inputs">
+              <asl-google-signin-button type="standard" size="large"></asl-google-signin-button>
+            </div>
+          </ng-container>
+          <!--if user hasnt booked spot, show reserve button-->
+          <ng-template #loggedInBlock>
+            <ng-container *ngIf="!user?.parkingDeckBooked; else bookedSpotBlock">
+              <button (click)="reserveButtonClicked('b')">
+                Reserve
+              </button>
+            </ng-container>
+          </ng-template>
+          <!--if user  booked spot, show checkout button-->
+          <ng-template #bookedSpotBlock>
+            <ng-container *ngIf="user?.parkingDeckBooked == 'b'">
+              <button (click)="checkoutButtonClicked()">
+                Check Out
+              </button>
+            </ng-container>
+          </ng-template>    
       </div>
     </div>
     <div class="deck">
@@ -136,20 +169,28 @@
       </div>
       <div class="spots">
         <p>GREEN LOT</p>
-        <!--if user hasnt login, show login button-->
-        <div *ngIf="!user" class="googleSign Inputs">
-          <asl-google-signin-button
-            type="standard"
-            size="large"
-          ></asl-google-signin-button>
-        </div>
-        <!--if user hasnt booked spot, show reserve button-->
-        <button
-          *ngIf="user && !user?.parkingDeckBooked"
-          (click)="reserveButtonClicked('g')"
-        >
-          Reserve
-        </button>
+          <!--if user hasnt login, show login button-->
+          <ng-container *ngIf="!user; else loggedInBlock">
+            <div class="googleSign Inputs">
+              <asl-google-signin-button type="standard" size="large"></asl-google-signin-button>
+            </div>
+          </ng-container>
+          <!--if user hasnt booked spot, show reserve button-->
+          <ng-template #loggedInBlock>
+            <ng-container *ngIf="!user?.parkingDeckBooked; else bookedSpotBlock">
+              <button (click)="reserveButtonClicked('g')">
+                Reserve
+              </button>
+            </ng-container>
+          </ng-template>
+          <!--if user  booked spot, show checkout button-->
+          <ng-template #bookedSpotBlock>
+            <ng-container *ngIf="user?.parkingDeckBooked == 'g'">
+              <button (click)="checkoutButtonClicked()">
+                Check Out
+              </button>
+            </ng-container>
+          </ng-template>    
       </div>
     </div>
   </div>

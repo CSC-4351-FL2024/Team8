@@ -74,7 +74,7 @@ public class UserService {
         return userRepository.save(existingUser);
     }
 
-    public User checkoutParkingDeck(String email, String parkingDeckBooked) {
+    public User checkoutParkingDeck(String email) {
         User existingUser = getUserByEmail(email);
         existingUser.setParkingDeckBooked(null);
         existingUser.setBookTime(null);

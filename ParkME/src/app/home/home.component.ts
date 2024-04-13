@@ -48,6 +48,9 @@ export class HomeComponent implements OnInit {
     this.userDataService.currentUser.subscribe((user) => {
       this.user = user;
       this.setSpots(); // Ensure setSpots is called after the user is set
+      console.log(user?.parkingDeckBooked=='t');
+      console.log(user?.parkingDeckBooked=='n');
+      console.log(user?.parkingDeckBooked=='a');
     });
   }
 
@@ -116,7 +119,26 @@ export class HomeComponent implements OnInit {
       });
     });
   }
-  checkoutButtonClicked(deck: string): void {}
+  
+  checkoutButtonClicked(): void {
+    this.userService.checkoutParkingDeck(this.user!).subscribe({
+      next: (response: any) => {
+        const updatedUser: User = {
+          email: response.user.email,
+          bookTime: response.user.bookTime,
+          parkingDeckBooked: response.user.parkingDeckBooked,
+          licensePlateNumber: response.user.licensePlateNumber,
+          Deckspots: response.Deckspots,
+        };
+
+        this.userDataService.updateUser(updatedUser);
+      },
+      error: (error) => {
+        console.error('Failed', error);
+        // Handle error, maybe show an error message
+      },
+    });
+  }
 
   reserveButtonClicked(deck: string): void {
     this.userService.reserveParkingDeck(this.user!, deck).subscribe({
