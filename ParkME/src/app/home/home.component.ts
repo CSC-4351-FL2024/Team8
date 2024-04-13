@@ -47,10 +47,13 @@ export class HomeComponent implements OnInit {
     this.initMap();
     this.userDataService.currentUser.subscribe((user) => {
       this.user = user;
+      this.DeckBspot = 15;
+      this.DeckGspot = 15;
+      this.DeckMspot = 15;
+      this.DeckNspot = 15;
+      this.DeckTspot = 15;
+      this.DeckSspot = 15;
       this.setSpots(); // Ensure setSpots is called after the user is set
-      console.log(user?.parkingDeckBooked=='t');
-      console.log(user?.parkingDeckBooked=='n');
-      console.log(user?.parkingDeckBooked=='a');
     });
   }
 
@@ -119,7 +122,7 @@ export class HomeComponent implements OnInit {
       });
     });
   }
-  
+
   checkoutButtonClicked(): void {
     this.userService.checkoutParkingDeck(this.user!).subscribe({
       next: (response: any) => {
@@ -128,8 +131,9 @@ export class HomeComponent implements OnInit {
           bookTime: response.user.bookTime,
           parkingDeckBooked: response.user.parkingDeckBooked,
           licensePlateNumber: response.user.licensePlateNumber,
-          Deckspots: response.Deckspots,
+          Deckspots: response.deckSpots,
         };
+        console.log(response);
 
         this.userDataService.updateUser(updatedUser);
       },
@@ -148,16 +152,63 @@ export class HomeComponent implements OnInit {
           bookTime: response.user.bookTime,
           parkingDeckBooked: response.user.parkingDeckBooked,
           licensePlateNumber: response.user.licensePlateNumber,
-          Deckspots: response.Deckspots,
+          Deckspots: response.deckSpots,
         };
 
         this.userDataService.updateUser(updatedUser);
-        this.setSpots();
       },
       error: (error) => {
         console.error('Deck full', error);
         // Handle error, maybe show an error message
       },
     });
+  }
+  checkUserStatus(): boolean {
+    if (this.user) {
+      return true;
+    }
+    return false;
+  }
+  checkUserBookedStatus(): boolean {
+    if (this.user?.parkingDeckBooked) {
+      return true;
+    }
+    return false;
+  }
+  checkUserBookedDeckT(): boolean {
+    if (this.user?.parkingDeckBooked == 't') {
+      return true;
+    }
+    return false;
+  }
+  checkUserBookedDeckM(): boolean {
+    if (this.user?.parkingDeckBooked == 'm') {
+      return true;
+    }
+    return false;
+  }
+  checkUserBookedDeckN(): boolean {
+    if (this.user?.parkingDeckBooked == 'n') {
+      return true;
+    }
+    return false;
+  }
+  checkUserBookedDeckS(): boolean {
+    if (this.user?.parkingDeckBooked == 's') {
+      return true;
+    }
+    return false;
+  }
+  checkUserBookedDeckB(): boolean {
+    if (this.user?.parkingDeckBooked == 'b') {
+      return true;
+    }
+    return false;
+  }
+  checkUserBookedDeckG(): boolean {
+    if (this.user?.parkingDeckBooked == 'g') {
+      return true;
+    }
+    return false;
   }
 }

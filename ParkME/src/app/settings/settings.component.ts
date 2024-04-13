@@ -30,8 +30,11 @@ export class SettingsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.userDataService.currentUser.subscribe((user) => (this.user = user));
     this.disableForm = new FormControl({ value: '', disabled: true });
+    this.userDataService.currentUser.subscribe((user) => {
+      this.user = user;
+      this.licensePlate.setValue(user?.licensePlateNumber!);
+    });
   }
 
   handleSubmit() {
