@@ -4,6 +4,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.example.ParkMEHandler.Deck;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public interface DeckRepository extends JpaRepository<Deck, String> {
@@ -25,4 +27,8 @@ public interface DeckRepository extends JpaRepository<Deck, String> {
 
     @Query("SELECT COUNT(d.gDeck) FROM Deck d")
     long countByGDeck();
+
+    @Modifying
+    @Transactional
+    void deleteAllInBatch();
 }

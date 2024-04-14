@@ -65,6 +65,11 @@ public class UserService {
         userRepository.deleteById(email);
     }
 
+    @Transactional
+    public void clearUserParkingInfo() {
+        userRepository.clearParkingInformation();
+    }
+    
     // Reserve a parking deck for the user identified by email
     public User reserveParkingDeck(String email, String parkingDeckBooked) {
         User existingUser = getUserByEmail(email);
