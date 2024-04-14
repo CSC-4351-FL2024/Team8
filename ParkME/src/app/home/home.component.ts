@@ -133,7 +133,6 @@ export class HomeComponent implements OnInit {
           licensePlateNumber: response.user.licensePlateNumber,
           Deckspots: response.deckSpots,
         };
-        console.log(response);
 
         this.userDataService.updateUser(updatedUser);
       },
