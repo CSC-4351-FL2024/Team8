@@ -17,13 +17,13 @@ public class ParkMeHandlerApplication {
         SpringApplication.run(ParkMeHandlerApplication.class, args);
     }
 
-    @Autowired
-    private ResetService resetService;
+    //@Autowired
+    //private ResetService resetService;
 
-    @Bean
-    public CommandLineRunner commandLineRunner() {
-        return args -> {
-            resetService.resetUserBookingsAndDecks();
-        };
-    }
-}
+    //@Bean
+    //public CommandLineRunner commandLineRunner() {
+      //  return args -> {
+        //    resetService.resetUserBookingsAndDecks();
+        }
+    //}
+//}
