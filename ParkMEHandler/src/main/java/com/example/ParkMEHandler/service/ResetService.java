@@ -21,12 +21,12 @@ public class ResetService {
     }
 
     // runs everyday at 12am
-    @Scheduled(cron = "0 06 22 * * ?")
+    @Scheduled(cron = "0 0 0 * * ?")
     @Transactional
-        public void resetUserBookingsAndDecks() {
-            System.out.println("function called");
-            deckRepository.deleteAll(); // delete all rows in deck table
-            userRepository.clearParkingInformation();
-            System.out.println("Finished");
-        }
+    public void resetUserBookingsAndDecks() {
+        System.out.println("function called");
+        deckRepository.deleteAll(); // delete all rows in deck table
+        userRepository.clearParkingInformation();
+        System.out.println("Finished");
     }
+}
