@@ -24,7 +24,9 @@ public class ResetService {
     @Scheduled(cron = "0 0 0 * * ?")
     @Transactional
     public void resetUserBookingsAndDecks() {
+        System.out.println("function called");
         deckRepository.deleteAll(); // delete all rows in deck table
         userRepository.clearParkingInformation();
+        System.out.println("Finished");
     }
 }
