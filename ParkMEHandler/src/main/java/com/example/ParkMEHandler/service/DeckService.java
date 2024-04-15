@@ -113,9 +113,9 @@ public class DeckService {
     }
 
     @Transactional
-    public long[] checkout (String email) {
-        if (!deckRepository.existsById(email)){
-            throw new EntityNotFoundException ("user not found with this email:" + email);
+    public long[] checkout(String email) {
+        if (!deckRepository.existsById(email)) {
+            throw new EntityNotFoundException("user not found with this email:" + email);
         }
         deckRepository.deleteById(email);
         return getCountOfEachDeck();

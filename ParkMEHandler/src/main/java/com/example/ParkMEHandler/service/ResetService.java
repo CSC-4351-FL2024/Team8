@@ -1,27 +1,30 @@
+
+package com.example.ParkMEHandler.service;
+
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.example.ParkMEHandler.Repo.DeckRepository;
+import com.example.ParkMEHandler.Repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import javax.transaction.Transactional;
 
 @Service
 public class ResetService {
+    private final UserRepository userRepository;
+    private final DeckRepository deckRepository;
 
     @Autowired
-    private DeckRepository deckRepository; 
-    @Autowired
-    private UserRepository userRepository;
+    public ResetService(UserRepository userRepository, DeckRepository deckRepository) {
+        this.userRepository = userRepository;
+        this.deckRepository = deckRepository;
+    }
 
-    //runs everyday at 12am 
+    // runs everyday at 12am
     @Scheduled(cron = "0 0 0 * * ?")
     @Transactional
     public void resetUserBookingsAndDecks() {
-        deckRepository.deleteAllInBatch(); //delete all rows in deck table
-        
-        //deckRepository.resetAllDeckAvailability(15); 
-        
-        //i should not have to reset all deck since all rows are deleted. 
-        //instead i think i have to remove user.bookingtime and user.deckbooked??...
+        deckRepository.deleteAll(); // delete all rows in deck table
         userRepository.clearParkingInformation();
-
     }
 }
