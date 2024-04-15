@@ -29,6 +29,6 @@ public interface DeckRepository extends JpaRepository<Deck, String> {
     long countByGDeck();
 
     @Modifying
-    @Transactional
+  //  @Transactional
     void deleteAllInBatch();
 }
