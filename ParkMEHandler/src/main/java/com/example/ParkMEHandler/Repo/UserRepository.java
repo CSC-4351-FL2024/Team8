@@ -22,7 +22,7 @@ public interface UserRepository extends JpaRepository<User, String> {
     Optional<User> findByEmailAndLicensePlateNumber(String email, String licensePlateNumber);
 
     @Modifying
-    @Transactional
+//    @Transactional
     @Query("UPDATE User u SET u.parkingDeckBooked = NULL, u.bookTime = NULL")
         void clearParkingInformation();
 }
