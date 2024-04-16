@@ -109,6 +109,43 @@
   cursor: pointer;
 }
 
+.deck-description {
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 100px;
+  margin-bottom: 0;
+}
+
+.deck-description h2 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.deck-description p {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.deck-description ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.deck-description li {
+  margin-bottom: 10px;
+}
+
+.deck-description li strong {
+  font-weight: bold;
+  color: #007bff; /* ParkMobile's blue color */
+}
+
+.deck-description li span {
+  color: #666;
+}
+
 .contact-container {
   height: 100vh;
   display: flex;
